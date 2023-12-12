@@ -19,11 +19,10 @@ for i, data in enumerate(data.iterrows()):
     pid = row.iloc[0]
     tid = row.iloc[1]
     comm = row.iloc[2]
-    selected_columns = row.iloc[3:].tolist()
-    one_dimensional_array = np.array(selected_columns)
-    reshaped_array = one_dimensional_array.reshape((1, -1))
-    #reshaped_array = np.array(row.iloc[3:]).reshape((1, -1))
+    reshaped_array = np.array(row.iloc[3:].tolist()).reshape((1, -1))
     im = axs[i].imshow(reshaped_array, cmap=plt.cm.inferno_r, extent=[0, 10, 0, 10], aspect='auto', interpolation='none', vmin=0, vmax=max_value)
+    # I use TeX here for boldface font generatiom, remove textbf and usetex=False
+    # to get rid of it
     text = f"\\textbf{{{comm}}}\nPID: {pid}  TID: {tid}"
     axs[i].text(-1, 5, text, multialignment='left', va='center', ha='left', fontsize=12, usetex=True)
 
