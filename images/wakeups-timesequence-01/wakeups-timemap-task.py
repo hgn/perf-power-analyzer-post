@@ -5,10 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
-data = pd.read_csv("wakeups-timemap-task.txt", sep='\s+', header=None)
-
-columns = ['pid', 'tid', 'comm'] + [f'time{i}' for i in range(4, len(data.columns) + 1)]
-data.columns = columns
+data = pd.read_csv("wakeups-timemap-task.txt", sep='\s+', header=0)
 max_value = data.iloc[:, 3:].max().max()
 data = data.head(30)
 no_tasks = data.shape[0]
@@ -19,11 +16,13 @@ for i, data in enumerate(data.iterrows()):
     pid = row.iloc[0]
     tid = row.iloc[1]
     comm = row.iloc[2]
+    row_mean_value = row.iloc[3:].mean()
     reshaped_array = np.array(row.iloc[3:].tolist()).reshape((1, -1))
-    im = axs[i].imshow(reshaped_array, cmap=plt.cm.inferno_r, extent=[0, 10, 0, 10], aspect='auto', interpolation='none', vmin=0, vmax=max_value)
+    im = axs[i].imshow(reshaped_array, cmap=plt.cm.inferno_r, extent=[0, 10, 0, 10],
+                       aspect='auto', interpolation='none', vmin=0, vmax=max_value)
     # I use TeX here for boldface font generatiom, remove textbf and usetex=False
     # to get rid of it
-    text = f"\\textbf{{{comm}}}\nPID: {pid}  TID: {tid}"
+    text = f"\\textbf{{{comm}}} - Mean:{row_mean_value:.1f}\nPID: {pid}  TID: {tid}"
     axs[i].text(-1, 5, text, multialignment='left', va='center', ha='left', fontsize=12, usetex=True)
 
 # add colorbar legend
