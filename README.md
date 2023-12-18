@@ -54,15 +54,15 @@ These data can be used to visualize the data to provide a human overview.
 > that occur asynchronously. 
 
 
-## CPU View
+## Wakeup Task per CPU View
 
 The following picture shows a nearly idle system, only a wild process, which is
 always migrated to different cores by the scheduler, generates a constantly
 high wakeup load.
 
-![](./images/wakeups-timesequence-01/wakeups-timemap-cpu.png)
+![](./images/wakeups-timesequence-01/wakeups-timemap-task-cpu.png)
 
-## Task View
+## Wakeup Task View
 
 The following illustration show the exact same data, but with a  focus on a
 task level. Here the former crazy task - a clipboard process gone wild - which
@@ -70,4 +70,12 @@ asks for clipboard data much too eagerly, causes a high wakeup load.
 
 
 ![](./images/wakeups-timesequence-01/wakeups-timemap-task.png)
+
+## Wakeup IRQ View
+
+![](./images/wakeups-timesequence-01/wakeups-timemap-irq.png)
+
+## Wakeup IRQ per CPU View
+
+![](./images/wakeups-timesequence-01/wakeups-timemap-irq-cpu.png)
 
