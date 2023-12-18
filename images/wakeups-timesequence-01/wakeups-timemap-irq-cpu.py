@@ -16,7 +16,7 @@ for i, data in enumerate(data.iterrows()):
     row_max_value = row.iloc[1:].max()
     row_mean_value = row.iloc[1:].mean()
     reshaped_array = np.array(row.iloc[1:]).reshape((1, -1))
-    im = axs[i].imshow(reshaped_array, cmap=plt.cm.YlOrRd, extent=[0, 10, 0, 10],
+    im = axs[i].imshow(reshaped_array, cmap=plt.cm.viridis_r, extent=[0, 10, 0, 10],
                        aspect='auto', interpolation='none', vmin=0, vmax=max_value)
     # I use TeX here for boldface font generatiom, remove textbf and usetex=False
     # to get rid of it
