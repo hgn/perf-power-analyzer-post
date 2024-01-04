@@ -36,6 +36,17 @@ taskset.
 perf script -i /tmp/perf.out -s ~/src/code/linux/tools/perf/scripts/python/power-statistics.py -- --mode wakeups-timesequence -C 1
 ```
 
+# Timer (mode: timer)
+
+*Required events: ...*
+
+
+## Timer Type Callback Expiration
+
+![](./images/timer-01/timer-type-callback-expiration-pie.png)
+
+![](./images/timer-01/timer-type-callback-expiration-bar.png)
+
 
 # Wakeups Timesequence (mode: wakeups-timesequence)
 
