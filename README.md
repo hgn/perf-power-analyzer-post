@@ -60,7 +60,7 @@ KernelTimer    ffffffffb718bfc0 415
 [...]
 ```
 
-![](./images/timer-01/timer-type-callback-expiration-pie.png)
+<img src="https://raw.githubusercontent.com/hgn/perf-power-statistics-doc/main/images/timer-01/timer-type-callback-expiration-pie.png" width=50% height=50%>
 
 ![](./images/timer-01/timer-type-callback-expiration-bar.png)
 
