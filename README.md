@@ -43,6 +43,23 @@ perf script -i /tmp/perf.out -s ~/src/code/linux/tools/perf/scripts/python/power
 
 ## Timer Type Callback Expiration
 
+Output Format:
+
+```
+TimerType      Callback         Expires 
+HRTimer        ffffffffb6da37c0 34051 
+HRTimer        ffffffffb6d8d650 6468 
+HRTimer        ffffffffb75615e0 4040 
+HRTimer        ffffffffb6de6a80 800 
+HRTimer        ffffffffc0b0cd20 413 
+HRTimer        ffffffffb6d9f280 1 
+KernelTimer    ffffffffb6cddab0 2647 
+KernelTimer    ffffffffb6d8b610 1629 
+KernelTimer    ffffffffb743fb50 745 
+KernelTimer    ffffffffb718bfc0 415 
+[...]
+```
+
 ![](./images/timer-01/timer-type-callback-expiration-pie.png)
 
 ![](./images/timer-01/timer-type-callback-expiration-bar.png)
