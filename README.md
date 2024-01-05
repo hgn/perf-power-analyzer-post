@@ -139,6 +139,15 @@ KernelTimer    ffffffffb718bfc0 415
 [...]
 ```
 
+> **Note:** to resolve kernel addressess to kernel function name is an optional
+> feature. The visualization script will parse `/proc/kallsyms` if executed
+> with effective user id 0. If not the addresses are just visualized. The
+> address to function name mapping must be generated at the time of recording
+> on the same system, if not the mapping will not match.
+> Perf power-statistics could theoretical generate this as well, but it enforces
+> that the script will be executed as root, which is not that great. So we decided
+> against this.
+
 <img src="https://raw.githubusercontent.com/hgn/perf-power-statistics-doc/main/images/timer-01/timer-type-callback-expiration-pie.png" width=50% height=50%>
 
 ![](./images/timer-01/timer-type-callback-expiration-bar.png)
