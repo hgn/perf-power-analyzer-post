@@ -1,5 +1,97 @@
 # Perf Power Statistics Module Documentation
 
+The perf power statistic module try to fill the gap between applications like
+powertop who provides high level insights about power management crucial
+characteristics and time consuming manual analysis with a high degree on expert
+knowledge.
+
+## General Information
+
+Perf power-statistics provide the functionality via so called modules. Each
+module focus on one particular analyze and can be called separately. 
+
+**Suppord modules are:**
+
+- idle-cluster
+- task
+- timer
+- frequency
+- summary
+- all (not a real module, it just enabling all other modules)
+
+Based on this, each module often output several different analysis. For
+example, the timer module provide information about timer type-callback
+characteristics as well as time series of all expired timers. These different
+outputs are called `analyzer`.
+
+### Recording
+
+Recording can be done be the provided perf wrapper to collect all required
+events. The provided wrapper is just a handy shortcut to test everything.
+Because power-management do so many different analyses a bunch of events are
+required. This quickly leads to huge amounts of recorded data. For longer and
+specific analyses, e.g. when using one module, it is beneficial to record just
+the required events.
+
+In the documentation of each module the required events are listed. This helps
+to reduce the recorded events to a minimum.
+
+> **Note:** power-analyzer are written in a robust way, if events are missing
+> for a particular module it will just not work and output anything.
+
+
+### Extended Output
+
+Standard output for the modules focus on readability and the outputed
+information can be processes by a human. Some modules provides more insights,
+more raw values. This provided data must be forwarded into post-processing
+chains (see next section). The output of these `analyzer` is prevented by
+default. To enable additional analyzer, the option `--extended` is available.
+
+> **Note**: extended do not extend the data by adding additional columns to the
+> data. Extending means additional analyzer are enabled.
+
+### Post-Processing
+
+power-statistics is written in a way that the collected data can be post
+processed by other tools as well. Data will then be read from Python for
+Visualization with matplotlib, forecaster like sktime or other tools. For this
+power-statistics was designed that all data can be reliable and easily
+processed.
+
+One important option that all modules implement is `--file-out`. If enabled,
+all output is written in dedicated files, named like the particular analyzer,
+e.g. `timer-type-callback-expiration.txt`.
+
+These files are *guaranteed* parseable and CSV format, but the delimiter is not
+a comma or semicolon, it is just whitespaces. So to read the data it is easy as
+`pd.read_csv(FILE_PATH, delim_whitespace=True)` (pandas dataframe).
+
+
+### CPU Filtering
+
+
+Via `-C <n>` or `--cpu <n>` it is possible to restrict the output to one CPU.
+However, it is important to note that not all commands understand this option.
+The often better alternative is to specify a CPU when recording, if this is
+possible, for example because processes have been pinned to a specific CPU with
+taskset.
+
+```
+perf script power-statistics.py -- --mode wakeups-timesequence -C 1
+```
+
+Sometimes the option is even dangerous. For example, in the timer analysis
+due to task migrations, recurring timer may be moved from one CPU to another.
+If the filtering limits the analysis of a particular timer then the analyzation
+will not see the `hrtimer_init` event.
+
+Each module has independend requirements if CPU filtering is risky or if even
+required. This will be elucidate in the description of each module.
+
+### General Usage
+
+
 perf power-statistics provides several modules, they can be queried via
 
 ```
@@ -7,15 +99,6 @@ $ perf script -i /tmp/perf.out -s ~/src/code/linux/tools/perf/scripts/python/pow
 usage: power-statistics.py [-h] [-m [{idle-cluster,task,timer,frequency,summary,all}]] [-C CPU] [-v] [--highlight-tasks HIGHLIGHT_TASKS] [--stdio-color {always,never,auto}] [--csv]
 power-statistics.py: error: argument -m/--mode: invalid choice: 'help' (choose from 'idle-cluster', 'task', 'timer', 'frequency', 'summary', 'all')
 ```
-
-Suppord modules are
-
-- idle-cluster
-- task
-- timer
-- frequency
-- summary
-- all
 
 
 Subsequent sections describe all modules in detail and how to post-process the data
@@ -25,16 +108,6 @@ Subsequent sections describe all modules in detail and how to post-process the d
 ## Recording
 
 ## CPU Filtering
-
-Via `-C <n>` or `--cpu <n>` it is possible to restrict the output to one CPU.
-However, it is important to note that not all commands understand this option.
-The often better alternative is to specify a CPU when recording, if this is
-possible, for example because processes have been pinned to a specific CPU with
-taskset.
-
-```
-perf script -i /tmp/perf.out -s ~/src/code/linux/tools/perf/scripts/python/power-statistics.py -- --mode wakeups-timesequence -C 1
-```
 
 # Timer (mode: timer)
 
