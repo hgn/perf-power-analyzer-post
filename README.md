@@ -1,9 +1,15 @@
 # Perf Power Statistics Module Documentation
 
-The perf power statistic module try to fill the gap between applications like
+The perf power statistic script try to fill the gap between applications like
 powertop who provides high level insights about power management crucial
 characteristics and time consuming manual analysis with a high degree on expert
 knowledge.
+
+*This documentation try to explain the functionality of the perf power
+statistic script, the outputed data and how the data can be interpreted to help
+the reader to do their own power management analysis. Furthermore, this
+documentation provides a lot of post-processing scripts to further analyse the
+data provided by the kernel and the perf power statistics script.*
 
 ## General Information
 
