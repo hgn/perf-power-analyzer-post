@@ -45,7 +45,7 @@ fig, ax = plt.subplots()
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
 ax.spines["left"].set_visible(False)
-ax.xaxis.grid(which='major', linestyle='-', linewidth='0.5', color='black')
+ax.xaxis.grid(which='major', linestyle='-', linewidth='0.5', color='#bbbbbb')
 ax.xaxis.grid(which='minor', linestyle=':', linewidth='0.5', color='#bbbbbb')
 ax.set_axisbelow(True)
 ax.ticklabel_format(style='plain')
@@ -61,7 +61,7 @@ for bar in bars:
             va='center', ha='left')
 
 plt.xlabel('Expires Count (Log Scale)')
-plt.ylabel('Timer Type and Callback')
+plt.ylabel('Timer Type and Kernel Callback Function')
 plt.gca().invert_yaxis()
 
 print(f'generate {FILE_PDF}')
