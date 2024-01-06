@@ -11,31 +11,9 @@ FILE_DATA = FILE_BASE + ".txt"
 FILE_PNG  = FILE_BASE + ".png"
 FILE_PDF  = FILE_BASE + ".pdf"
 
-def load_kallsyms():
-    kallsyms = {}
-    with open('/proc/kallsyms', 'r') as file:
-        for line in file:
-            parts = line.split()
-            if len(parts) >= 3:
-                address, typ, name = parts[:3]
-                kallsyms[address] = name
-    return kallsyms
-
-def get_function_name(address, kallsyms):
-    return kallsyms.get(address, address)
-
-def uid0_check():
-    if not os.geteuid():
-        return
-    print("Warning: please run as root to resolve addresses to function names",
-            file=sys.stderr)
-
-uid0_check()
-kallsyms = load_kallsyms()
-
 df = pd.read_csv(FILE_DATA, delim_whitespace=True)
 
-df['Callback'] = df['Callback'].apply(lambda x: get_function_name(x, kallsyms))
+#df['Callback'] = df['Callback'].apply(lambda x: get_function_name(x, kallsyms))
 grouped_data = df.groupby(['TimerType', 'Callback'])['Expires'].sum().reset_index()
 grouped_data['Label'] = grouped_data['TimerType'] + ": " + grouped_data['Callback']
 sorted_data = grouped_data.sort_values(by='Expires', ascending=False)

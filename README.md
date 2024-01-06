@@ -139,14 +139,8 @@ KernelTimer    ffffffffb718bfc0 415
 [...]
 ```
 
-> **Note:** to resolve kernel addressess to kernel function name is an optional
-> feature. The visualization script will parse `/proc/kallsyms` if executed
-> with effective user id 0. If not the addresses are just visualized. The
-> address to function name mapping must be generated at the time of recording
-> on the same system, if not the mapping will not match.
-> Perf power-statistics could theoretical generate this as well, but it enforces
-> that the script will be executed as root, which is not that great. So we decided
-> against this.
+# *Tip:* see Appendix (Kernel Address to Kernel Function Name Mapping) to map
+# these addresses to kernel function names.
 
 <img src="https://raw.githubusercontent.com/hgn/perf-power-statistics-doc/main/images/timer-01/timer-type-callback-expiration-pie.png" width=50% height=50%>
 
@@ -195,3 +189,22 @@ asks for clipboard data much too eagerly, causes a high wakeup load.
 
 ![](./images/wakeups-timesequence-01/wakeups-timemap-irq-cpu.png)
 
+
+# Appendix
+
+# Kernel Address to Kernel Function Name Mapping
+
+Some analysis benefits from providing the function name instead of illustrating
+the raw kernel address. For example: in the timer analysis the internal
+callback functions are recorded. But addresses like `ffffffffb6da37c0` are not
+that helpful for the user. To map these kernel addresses to function names a
+generic mapping script is provided in the assets directory. This script simple
+iterates over *stdout* replaces all matches with the function name - here
+`tick_sched_timer`- and print out everything else untouched to stdout. 
+
+If the script is not executed with effective UID 0 a warning is printed on stderr.
+
+> **Note:** the replacement must be done on the recording systems to recording
+> time. Especially on systems with activated Kernel Address Space Layout
+> Randomization (KASLR) where positions of kernel code is pseudo-randomized at
+> boot time.
