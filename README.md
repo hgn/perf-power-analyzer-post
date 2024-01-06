@@ -139,8 +139,8 @@ KernelTimer    ffffffffb718bfc0 415
 [...]
 ```
 
-# *Tip:* see Appendix (Kernel Address to Kernel Function Name Mapping) to map
-# these addresses to kernel function names.
+> **Tip:** see Appendix (Kernel Address to Kernel Function Name Mapping) to map
+> these addresses to kernel function names.
 
 <img src="https://raw.githubusercontent.com/hgn/perf-power-statistics-doc/main/images/timer-01/timer-type-callback-expiration-pie.png" width=50% height=50%>
 
