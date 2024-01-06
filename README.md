@@ -202,6 +202,14 @@ generic mapping script is provided in the assets directory. This script simple
 iterates over *stdout* replaces all matches with the function name - here
 `tick_sched_timer`- and print out everything else untouched to stdout. 
 
+## Usage
+
+```
+# read from STDIN and pipe to STDOUT
+$ sudo assets/kallsyms-mapper.py <timer-type-callback-expiration-bar.txt >tmp.txt
+$ mv tmp.txt timer-type-callback-expiration-bar.txt
+```
+
 If the script is not executed with effective UID 0 a warning is printed on stderr.
 
 > **Note:** the replacement must be done on the recording systems to recording
