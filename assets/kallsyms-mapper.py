@@ -24,7 +24,7 @@ def substitute_kernel_addresses(line, symbols):
 def main():
     symbols = load_kernel_symbols()
     for line in sys.stdin:
-        print(substitute_kernel_addresses(line.strip(), symbols))
+        print(substitute_kernel_addresses(line.rstrip(), symbols))
 
 if __name__ == "__main__":
     main()

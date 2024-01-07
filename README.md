@@ -120,6 +120,56 @@ Subsequent sections describe all modules in detail and how to post-process the d
 *Required events: ...*
 
 
+The recorded data length is 60 seconds. The first 20 seconds is on a nearly
+idle Gnome desktop system. After 20 seconds chromium is started and a bunch of
+website are visited, this for again 20 seconds. Afterwards, no further browser
+interaction are done - the system slowly calms down.
+
+## Timer Expire
+
+Output Data (`timer-expires.txt`):
+
+```
+Time     PID             Comm CPU   TimerType              Now  StartSoftExpire      StartExpire Function
+286620.187660809  152123  ThreadPoolForeg  11     HRTimer  286629470151692  286629470099466  286629470149466 hrtimer_wakeup
+286620.188537133  152124  ThreadPoolForeg   4     HRTimer  286629471022978  286629470919418  286629470969418 hrtimer_wakeup
+286620.193581325      -1          unknown  10     HRTimer  286629476066745  286629476000000  286629476000000 tick_sched_timer
+286620.193599137      -1          unknown  10 KernelTimer       4366549652       4366549651       4366549651 blk_stat_timer_fn
+286620.197588773      -1          unknown   9     HRTimer  286629480072777  286629480000000  286629480000000 tick_sched_timer
+286620.197606219      -1          unknown   9 KernelTimer       4366549653       4366549652       4366549652 delayed_work_timer_fn
+286620.201196138   86127            kitty  27     HRTimer  286629483678969  286629483543653  286629483593653 hrtimer_wakeup
+286620.215074830  150947            sleep   4     HRTimer  286629497561008  286629497454283  286629497504283 hrtimer_wakeup
+286620.217582137      -1          unknown  23     HRTimer  286629500067923  286629500000000  286629500000000 tick_sched_timer
+[...]
+```
+
+The most obvious analysis is the number of expired timers, i.e. timers that
+have not been stopped prematurely, but which have actually expired and will
+trigger an action. The following illustration shows all expired timers of all
+CPUs and summarises them at process level. As a large number of processes
+trigger a timer during 100 seconds or recording, the visualisation script has a
+limit that can be set so that processes with fewer expired timers are not
+displayed; this limit is set here at 400.
+
+
+![](./images/timer-01/timer-expire.png)
+
+The large number of timers in the unknown process is eye-catching. This unknown
+class contains timers that were started by the kernel and/or where no
+assignment to a userspace process is possible.
+
+The next image illustrate the same data but with a logarithmic scale for
+y-axis. The following picture becomes immediately apparent: many Chromium-based
+processes become executable after 20 seconds. You can also see that Kitty (GPU
+based terminal emulator) causes a constant timer load per terminal, two
+terminals are executed.
+
+![](./images/timer-01/timer-expire-log.png)
+
+The use of a logarithmic scale makes more data visible and is advantageous for
+many analyses.
+
+
 ## Timer Type Callback Expiration
 
 Output Format:
