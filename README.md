@@ -169,6 +169,39 @@ terminals are executed.
 The use of a logarithmic scale makes more data visible and is advantageous for
 many analyses.
 
+Now let's zoom into the "unknown" area. So kernel-specific timers and break
+this down. What are the different timers for, what do they do? For this
+analysis it is necessary that kallsyms-mapper.py (see appendix) was called to
+exchange kernel addresses for the function name. For the analysis we use a
+stack graph, the number of timers per second is accumulated. 
+
+![](./images/timer-01/timer-expires-unknown-function.png)
+
+The following is nice to see:
+
+- at second 20, the timer ticks increase massively. These are by far the most
+  frequent source of executed timers. Also easy to recognise. The kernel is
+  configured with 250Hz, i.e. a maximum of 250 timers can strike per core
+  (multiplied by the number of cores, we get the maximum timer ticks per second
+  for the entire system). In the first 20 seconds you can also see very clearly
+  that `CONFIG_NO_HZ_FULL`
+- large number of network stack relevant timers can be recognised, especially
+  NAPI handling and also TCP state machine relevant timers.
+- remaining timer expires are common timers, triggered more often because of
+  more overall processing.
+
+
+> **Info:** even if we see a lot of timers here, this does not necessarily
+> mean that this is the source of unfavourable power management behaviour. In
+> periods of 20 seconds to 40 seconds the system is at 100% processing for some
+> cores. Timers do not wake up the system or contribute negatively to power
+> efficiency. Or in other words: long and deep sleep phases are not possible in
+> the period from 20 to 40 seconds for capacity utilisation reasons.
+
+
+
+
+
 
 ## Timer Type Callback Expiration
 
