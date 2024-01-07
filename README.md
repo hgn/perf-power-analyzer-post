@@ -130,7 +130,7 @@ interaction are done - the system slowly calms down.
 Output Data (`timer-expires.txt`):
 
 ```
-Time     PID             Comm CPU   TimerType              Now  StartSoftExpire      StartExpire Function
+            Time     PID             Comm CPU   TimerType              Now  StartSoftExpire      StartExpire Function
 286620.187660809  152123  ThreadPoolForeg  11     HRTimer  286629470151692  286629470099466  286629470149466 hrtimer_wakeup
 286620.188537133  152124  ThreadPoolForeg   4     HRTimer  286629471022978  286629470919418  286629470969418 hrtimer_wakeup
 286620.193581325      -1          unknown  10     HRTimer  286629476066745  286629476000000  286629476000000 tick_sched_timer
