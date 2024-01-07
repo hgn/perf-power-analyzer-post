@@ -152,7 +152,7 @@ limit that can be set so that processes with fewer expired timers are not
 displayed; this limit is set here at 400.
 
 
-![](./images/timer-01/timer-expire.png)
+![](./images/timer-01/timer-expires.png)
 
 The large number of timers in the unknown process is eye-catching. This unknown
 class contains timers that were started by the kernel and/or where no
@@ -164,7 +164,7 @@ processes become executable after 20 seconds. You can also see that Kitty (GPU
 based terminal emulator) causes a constant timer load per terminal, two
 terminals are executed.
 
-![](./images/timer-01/timer-expire-log.png)
+![](./images/timer-01/timer-expires-log.png)
 
 The use of a logarithmic scale makes more data visible and is advantageous for
 many analyses.
