@@ -26,7 +26,7 @@ grouped_data['Match'] = grouped_data['Entries'] - grouped_data['Miss']
 grouped_data = grouped_data.drop(columns = ['Miss', 'Entries'])
 
 
-# Creating a sorted 90% rotated bar chart with logarithmic scale
+# Creating a sorted 90% rotated bar chart
 fig, ax = plt.subplots()
 bars_match = ax.bar(grouped_data['C-State'], grouped_data['Match'])
 bars_above = ax.bar(grouped_data['C-State'], grouped_data['Above'], bottom=grouped_data['Match'])
