@@ -13,8 +13,8 @@ FILE_PDF  = FILE_BASE + ".pdf"
 colors = ['#3498db', '#e74c3c']
 lineprops = {"linewidth": 1, "edgecolor": "white"}
 
-df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State', 'Sleep[ns]'])
-grouped_data = df.groupby('C-State')['Sleep[ns]'].sum()
+df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State'])
+grouped_data = df.groupby('C-State')['C-State'].count()
 
 def label_print(pct, allvals):
     absolute = int(round(pct/100.*sum(allvals)))

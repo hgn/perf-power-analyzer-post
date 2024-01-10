@@ -20,7 +20,7 @@ for cpu in df['CPU'].unique():
     plt.scatter(range(0,len(sleep_data.index)), sleep_data['C-State'], s=100**sleep_data['norm_sleep'], alpha=0.3, label=f'CPU{cpu}', c=[next(colors)])
 
 plt.xlabel('Sequence')
-plt.ylabel('Sleep [ns]')
+plt.ylabel('C-State')
 plt.legend()
 
 print(f'generate {FILE_PDF}')
