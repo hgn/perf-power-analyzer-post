@@ -23,6 +23,7 @@ for cpu in df['CPU'].unique():
 
 plt.xlabel('Sequence')
 plt.ylabel('Sleep [ns]')
+plt.yscale('log')
 plt.legend()
 
 print(f'generate {FILE_PDF}')
