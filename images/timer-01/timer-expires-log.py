@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-FILE_BASE = os.path.basename(__file__).rstrip('.py')
+FILE_BASE = os.path.splitext(__file__)[0]
 FILE_DATA = FILE_BASE + ".txt"
 FILE_PNG  = FILE_BASE + ".png"
 FILE_PDF  = FILE_BASE + ".pdf"
