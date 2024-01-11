@@ -35,15 +35,28 @@ bars_match = ax.bar(grouped_data['C-State'], grouped_data['Match_perc'])
 bars_above = ax.bar(grouped_data['C-State'], grouped_data['Above_perc'], bottom=grouped_data['Match_perc'])
 bars_below = ax.bar(grouped_data['C-State'], grouped_data['Below_perc'], bottom=(grouped_data['Match_perc'] + grouped_data['Above_perc']))
 
+for i, bar_match in enumerate(bars_match):
+    if grouped_data['Match'][i] > 0:
+        height=bar_match.get_height()
+        ax.text(bar_match.get_x() + bar_match.get_width() / 2, bar_match.get_y() + bar_match.get_height() / 2, grouped_data['Match'][i],
+                va='center', ha='center')
+
+for i, bar_above in enumerate(bars_above):
+    if grouped_data['Above'][i] > 0:
+        height=bar_above.get_height()
+        ax.text(bar_above.get_x() + bar_above.get_width() / 2, bar_above.get_y() + bar_above.get_height() / 2, grouped_data['Above'][i],
+                va='center', ha='center')
+
+for i, bar_below in enumerate(bars_below):
+    if grouped_data['Below'][i] > 0:
+        height=bar_below.get_height()
+        ax.text(bar_below.get_x() + bar_match.get_width() / 2, bar_below.get_y() + bar_below.get_height() / 2, grouped_data['Below'][i],
+                va='center', ha='center')
+
 # Format axes
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-"""
-for bar_match, bar_above, bar_below in bars_match, bars_above, bars_below:
-    ax.text(label_x_pos, bar_match.get_y() + bar_match.get_height() / 2, f'{int(width)}',
-            va='center', ha='left')
-"""
 
 plt.xlabel('C-State')
 plt.ylabel('Percentage')
