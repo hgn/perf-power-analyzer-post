@@ -11,25 +11,33 @@ FILE_DATA = FILE_BASE + ".txt"
 FILE_PNG  = FILE_BASE + ".png"
 FILE_PDF  = FILE_BASE + ".pdf"
 
-df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['CPU', 'Sleep[ns]'])
+df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['CPU', 'C-State'])
 
 no_tasks = df['CPU'].unique().shape[0]
 
 fig, axs = plt.subplots(no_tasks, 1, sharex=True, figsize=(30, 20))
+cstate_map = {}
+cstates = df['C-State'].unique()
+cstates.sort()
+for i, cstate in enumerate(cstates):
+    cstate_map[cstate] = i
+df['C-State-Mapped'] = df['C-State'].map(cstate_map)
 
 for i, cpu in enumerate(df['CPU'].unique()):
     row = df[df['CPU'] == cpu]
-    reshaped_array = np.array(row['Sleep[ns]'].tolist()).reshape((1,-1))
-    row_mean_value = row['Sleep[ns]'].mean()
-    row_median_value = row['Sleep[ns]'].median()
-    row_highest_value = row['Sleep[ns]'].max()
-    im = axs[i].imshow(reshaped_array, cmap=plt.cm.inferno_r, extent=[0,10,0,10], aspect='auto', vmin=0, vmax=row_highest_value)
-    text = f"CPU: {cpu}\nMean: {row_mean_value:,.0f} ns\nMedian: {row_median_value:,.0f} ns\nHighest: {row_highest_value:,.0f} ns"
+    reshaped_array = np.array(row['C-State-Mapped'].tolist()).reshape((1,-1))
+    row_most_used_state = row.groupby('C-State').size().idxmax()
+    row_most_used_amount = row.groupby('C-State').size().max()
+    im = axs[i].imshow(reshaped_array, cmap='tab20b')
+    text = f"\nCPU: {cpu}\nMost Used: {row_most_used_state} ({row_most_used_amount:,})"
     axs[i].text(-1, 5, text, multialignment='left', va='center', ha='left', fontsize=12, usetex=False)
 
 # add colorbar legend
+bounds = np.linspace(0,len(cstates),len(cstates)+1)
 cbar_ax = fig.add_axes([0.95, 0.1, 0.03, 0.8])
-cbar = fig.colorbar(im, cax=cbar_ax)
+cbar = fig.colorbar(im, cax=cbar_ax, boundaries=bounds, ticks=bounds)
+cbar.set_ticks(list(set(cstate_map.values())))
+cbar.set_ticklabels([cstate for cstate, value in sorted(cstate_map.items(), key=lambda x: x[1])])
 
 # remove borders and make is look more modern
 for ax in axs:
