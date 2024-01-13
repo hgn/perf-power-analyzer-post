@@ -25,6 +25,10 @@ filtered_grouped = grouped[grouped.set_index(['PID', 'Comm']).index.isin(pids_to
 
 pivot_df = filtered_grouped.pivot(index='RoundedTime', columns=['PID', 'Comm'], values='EventCount')
 
+# fill missing time values with 0
+complete_time_index = pd.RangeIndex(start=df['RoundedTime'].min(), stop=df['RoundedTime'].max() + 1)
+pivot_df = pivot_df.reindex(complete_time_index, fill_value=0)
+
 plt.rcParams.update({'font.size': 6})
 markersize = 2
 linewidth = .7
@@ -48,7 +52,7 @@ ax.set_ylabel('Timer Expires [Hz]')
 ax.legend()
 #ax.set_yscale('log')
 
-print(f'generate {FILE_PDF}')
-plt.savefig(FILE_PDF, dpi=300, bbox_inches='tight')
 print(f'generate {FILE_PNG}')
 plt.savefig(FILE_PNG, dpi=300, bbox_inches='tight')
+print(f'generate {FILE_PDF}')
+plt.savefig(FILE_PDF, dpi=300, bbox_inches='tight')
