@@ -3,7 +3,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
 import os
 
 FILE_BASE = os.path.splitext(__file__)[0]
@@ -36,7 +35,7 @@ for i, cpu in enumerate(df['CPU'].unique()):
 bounds = np.linspace(0,len(cstates),len(cstates)+1)
 cbar_ax = fig.add_axes([0.95, 0.1, 0.03, 0.8])
 cbar = fig.colorbar(im, cax=cbar_ax, boundaries=bounds, ticks=bounds)
-cbar.set_ticks(list(set(cstate_map.values())))
+cbar.set_ticks(np.arange(len(list(set(cstate_map.values()))))+0.5)
 cbar.set_ticklabels([cstate for cstate, value in sorted(cstate_map.items(), key=lambda x: x[1])])
 
 # remove borders and make is look more modern
