@@ -10,14 +10,15 @@ FILE_DATA = FILE_BASE + ".txt"
 FILE_PNG  = FILE_BASE + ".png"
 FILE_PDF  = FILE_BASE + ".pdf"
 
-colors = iter([plt.cm.tab10(i) for i in range(20)])
+colors = iter([plt.cm.tab20(i) for i in range(20)])
 
-df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['CPU', 'Sleep[ns]'])
+df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State', 'Sleep[ns]', 'Miss'])
+df = df.loc[df['Miss'] == 1]
 
 plt.figure(figsize=(40,8))
-for cpu in df['CPU'].unique():
-    sleep_data = (df.loc[df['CPU']==cpu])
-    plt.scatter(range(0,len(sleep_data.index)), sleep_data['Sleep[ns]'], alpha=0.3, label=f'CPU{cpu}', c=[next(colors)])
+for cstate in df['C-State'].unique():
+    sleep_data = (df.loc[df['C-State']==cstate])
+    plt.scatter(range(0,len(sleep_data.index)), sleep_data['Sleep[ns]'], alpha=0.3, label=f'{cstate}', c=[next(colors)])
 
 
 plt.xlabel('Sequence')
