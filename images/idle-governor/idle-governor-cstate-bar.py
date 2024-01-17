@@ -26,7 +26,6 @@ residencies = residencies[RES_CPU]
 # Group by C-State and sum the sleeping times
 grouped_data = df.groupby(by='C-State').agg({'Sleep[ns]' : 'sum', 'C-State' : 'size'})
 grouped_data = grouped_data.rename(columns={'C-State' : 'Entries'}).reset_index()
-#grouped_data = df.groupby(['C-State']).sum('Sleep[ns]').reset_index()
 for res in residencies.items():
     grouped_data.loc[grouped_data['C-State'] == res[1]['name'], 'Residency'] = int(res[1]['residency'])
 
@@ -41,7 +40,7 @@ res_colors = plt.cm.winter(np.linspace(0.1, 0.9, len(grouped_data)))
 # Creating a sorted 90% rotated bar chart with logarithmic scale
 fig, ax = plt.subplots()
 sleep_bar = ax.barh(sorted_data['C-State'], sorted_data['Sleep[ns]'], width, log=True, label='Total Sleep', color=sleep_colors)
-res_bar = ax.barh(sorted_data['C-State'], sorted_data['Residency']*1000*sorted_data['Entries'], width/4, log=True, label='Total Residency', color=res_colors)
+res_bar = ax.barh(sorted_data['C-State'], sorted_data['Residency']*1000*sorted_data['Entries'], width/3, log=True, label='Total Residency', color=res_colors)
 
 # format axes
 ax.spines['top'].set_visible(False)
