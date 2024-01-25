@@ -12,6 +12,10 @@ import ctypes.util
 
 PRE_POST_SLEEP = 20
 BENCH_TIME = 20
+# Set a seed for reproducibility
+random.seed(0)
+# Adjust WORKERS parameter accordingly to the CPU Spec
+WORKERS = 5
 
 def change_comm_name(new_name):
     PR_SET_NAME = 15
@@ -78,7 +82,7 @@ def run_benchmark():
 def run_benchmarks_in_parallel():
     benchmark_processes = []
 
-    for i in range(5):
+    for i in range(WORKERS):
         print(f"Initiate worker processes now ({i + 1})")
         p = multiprocessing.Process(target=run_benchmark)
         p.start()
