@@ -54,7 +54,7 @@ ax.spines['right'].set_visible(False)
 
 plt.xlabel('CPU')
 plt.ylabel('Percentage')
-plt.legend(['Match', 'Above', 'Below'])
+plt.legend(['Match', 'Above', 'Below'], loc='upper center', bbox_to_anchor=(0.85, 0, 0.5, 1))
 
 print(f'generate {FILE_PDF}')
 plt.savefig(FILE_PDF, dpi=300, bbox_inches='tight')
