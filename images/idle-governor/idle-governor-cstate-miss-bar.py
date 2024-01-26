@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import re
 
 FILE_BASE = os.path.splitext(__file__)[0]
 FILE_DATA = FILE_BASE + ".txt"
@@ -16,6 +17,12 @@ df['Below'] = pd.to_numeric(df['Below'], errors='coerce')
 
 grouped_data = df.groupby(by='C-State').agg({'Miss' : 'sum', 'Below' : 'sum', 'C-State' : 'size'})
 grouped_data = grouped_data.rename(columns={'C-State': 'Entries'}).reset_index()
+
+def cstate_key(cstate):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split('([0-9]+)', cstate)]
+
+grouped_data = grouped_data.iloc[grouped_data['C-State'].apply(cstate_key).argsort()].reset_index()
+
 grouped_data['Above'] = grouped_data['Miss'] - grouped_data['Below']
 grouped_data['Match'] = grouped_data['Entries'] - grouped_data['Miss']
 grouped_data['Above_perc'] = 100 * grouped_data['Above'] / grouped_data['Entries']
