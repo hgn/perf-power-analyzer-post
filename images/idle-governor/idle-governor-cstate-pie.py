@@ -14,7 +14,6 @@ lineprops = {"linewidth": 1, "edgecolor": "white"}
 
 df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State'])
 grouped_data = df.groupby('C-State')['C-State'].count().sort_values(ascending=False)
-print(grouped_data)
 
 def label_print(pct, allvals):
     absolute = int(round(pct/100.*sum(allvals)))
