@@ -60,7 +60,7 @@ ax.spines['right'].set_visible(False)
 
 plt.xlabel('C-State')
 plt.ylabel('Percentage')
-plt.legend(['Match', 'Above', 'Below'], loc='upper center', bbox_to_anchor=(0.85, 0, 0.5, 1))
+plt.legend(['Ideal', 'Above\n(Too Deep)', 'Below\n(Too Shallow)'], loc='upper center', bbox_to_anchor=(0.87, 0, 0.5, 1))
 
 print(f'generate {FILE_PDF}')
 plt.savefig(FILE_PDF, dpi=300, bbox_inches='tight')
