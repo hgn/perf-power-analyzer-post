@@ -13,7 +13,7 @@ FILE_JSON = FILE_BASE + ".json"
 
 
 # Read data from file
-df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State', 'Sleep[ns]', 'CPU'])
+df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State', 'Sleep[ns]', 'CPU', 'Miss'])
 residencies = pd.read_json(FILE_JSON)
 
 
@@ -24,10 +24,11 @@ for i in range(len(df)):
     # The smallest residency is always 0
     opt_res_time = -1
     opt_res_name = None
-    for res in residencies['cpu' + str(df.loc[i]['CPU'])].items():
-        if int(res[1]['residency'])*1000 <= sleep and int(res[1]['residency']) >= opt_res_time:
-            opt_res_time = int(res[1]['residency'])
-            opt_res_name = res[1]['name']
+    if df.loc[i]['Miss'] == 1:
+        for res in residencies['cpu' + str(df.loc[i]['CPU'])].items():
+            if int(res[1]['residency'])*1000 <= sleep and int(res[1]['residency']) >= opt_res_time:
+                opt_res_time = int(res[1]['residency'])
+                opt_res_name = res[1]['name']
     if opt_res_name is None:
         df.loc[i, 'Optimal-State'] = df.loc[i, 'C-State']
     else:
