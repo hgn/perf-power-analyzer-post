@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import re
 
 FILE_BASE = os.path.splitext(__file__)[0]
 FILE_DATA = FILE_BASE + ".txt"
@@ -11,6 +12,9 @@ FILE_PNG  = FILE_BASE + ".png"
 FILE_PDF  = FILE_BASE + ".pdf"
 FILE_JSON = FILE_BASE + ".json"
 
+# Alphanumeric sort for C-States
+def cstate_key(cstate):
+    return [int(text) if text.isdigit() else text.lower() for text in re.split('([0-9]+)', cstate)]
 
 # Read data from file
 df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State', 'Sleep[ns]', 'CPU', 'Miss'])
@@ -34,8 +38,7 @@ for i in range(len(df)):
     else:
         df.loc[i, 'Optimal-State'] = opt_res_name
 
-
-i_col = sorted(set(df['C-State'].unique()).union(df['Optimal-State'].unique()))
+i_col = sorted(set(df['C-State'].unique()).union(df['Optimal-State'].unique()), key = cstate_key)
 
 # Correlate Optimal State and Chosen State
 tab = pd.crosstab(df['C-State'], df['Optimal-State']).reindex(index=i_col, columns=i_col, fill_value=0)
