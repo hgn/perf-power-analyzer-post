@@ -4,6 +4,7 @@ import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
 import re
 
 FILE_BASE = os.path.splitext(__file__)[0]
@@ -42,11 +43,13 @@ i_col = sorted(set(df['C-State'].unique()).union(df['Optimal-State'].unique()), 
 
 # Correlate Optimal State and Chosen State
 tab = pd.crosstab(df['C-State'], df['Optimal-State']).reindex(index=i_col, columns=i_col, fill_value=0)
-norm_trans = np.array(tab.div(tab.sum(axis=1), axis=0).fillna(0))
+norm_trans = np.array(tab.div(tab.sum(axis=1), axis=0).fillna(0))*100
+
+cmap = ListedColormap(plt.cm.viridis(np.linspace(0, 0.5, 256)))
 
 # Create heatmap
 fig, ax = plt.subplots()
-im = ax.imshow(norm_trans)
+im = ax.imshow(norm_trans, cmap=cmap)
 
 # Set Ticks
 ax.set_xticks(np.arange(len(tab.axes[1])), labels=tab.axes[1])
@@ -55,7 +58,7 @@ ax.set_yticks(np.arange(len(tab.axes[0])), labels=tab.axes[0])
 # Create Annotations
 for i in range(len(tab.axes[0])):
     for j in range(len(tab.axes[1])):
-        text = ax.text(j, i, f'{norm_trans[i, j]:.2f}',
+        text = ax.text(j, i, f'{round(norm_trans[i, j])}%',
                        ha="center", va="center", color="w")
 
 
