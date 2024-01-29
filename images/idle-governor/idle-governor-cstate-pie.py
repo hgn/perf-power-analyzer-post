@@ -14,20 +14,23 @@ lineprops = {"linewidth": 1, "edgecolor": "white"}
 
 df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State'])
 grouped_data = df.groupby('C-State')['C-State'].count().sort_values(ascending=False)
+colors = plt.get_cmap('Pastel2')(np.linspace(0, 1, len(grouped_data)))
 
 def label_print(pct, allvals):
     absolute = int(round(pct/100.*sum(allvals)))
-    return "{:.1f}%\n({:d})".format(pct, absolute)
+    return ""
+    # Temporarily remove label print
+    #return "{:.1f}%\n({:d})".format(pct, absolute)
 
 fig, ax = plt.subplots(figsize=(5, 5))
 
 labels=grouped_data.index
 total_entries = sum(grouped_data.values)
 threshold = (20 * total_entries) / 100
-explode_arr = [0.25 if dat < threshold else 0 for dat in grouped_data.values]
+explode_arr = [0.05 if dat < threshold else 0 for dat in grouped_data.values]
 ax.pie(grouped_data,
         autopct=lambda pct: label_print(pct, grouped_data),
-        startangle=90, wedgeprops=lineprops, pctdistance=1.15, explode=explode_arr)
+        startangle=90, wedgeprops=lineprops, pctdistance=1.15, explode=explode_arr, colors=colors)
 ax.axis('equal')
 plt.legend(labels, loc='upper center', bbox_to_anchor=(1, 0, 0.5, 1), ncol=2)
 
