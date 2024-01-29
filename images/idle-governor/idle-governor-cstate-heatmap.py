@@ -45,7 +45,7 @@ i_col = sorted(set(df['C-State'].unique()).union(df['Optimal-State'].unique()), 
 tab = pd.crosstab(df['C-State'], df['Optimal-State']).reindex(index=i_col, columns=i_col, fill_value=0)
 norm_trans = np.array(tab.div(tab.sum(axis=1), axis=0).fillna(0))*100
 
-cmap = ListedColormap(plt.cm.viridis(np.linspace(0, 0.5, 256)))
+cmap = ListedColormap(plt.cm.viridis(np.linspace(0, 0.25, 256)))
 
 # Create heatmap
 fig, ax = plt.subplots()
