@@ -22,20 +22,20 @@ colors2 = plt.get_cmap('Pastel1')(np.linspace(0, 1, len(grouped_data['C-State'])
 
 fig, axs = plt.subplots(1, 2, figsize=(10, 30))
 
-
-df_filtered = grouped_data.loc[grouped_data.index.isin(largest_i) | (grouped_data.index == grouped_data.index.min())]  # Include 'other' row
-
+# Include other row
+df_filtered = grouped_data.loc[grouped_data.index.isin(largest_i) | (grouped_data.index == grouped_data.index.min())]
 df_filtered.loc[df_filtered.index.min(), 'C-State'] = 'Others'
 
+# Left pie chart with all States
 labels_first = df_filtered['C-State']
 axs[0].pie(df_filtered['Sleep[ns]'],
            startangle=90, wedgeprops=lineprops, labels=labels_first, colors=colors1)
 
+# Right pie chart without the 2 longest sleeping C-States
 labels_scnd = without_largest['C-State']
 axs[1].pie(without_largest['Sleep[ns]'],
            startangle=90, wedgeprops=lineprops, labels=labels_scnd, radius=0.7, colors=colors2)
 plt.title('Subset \'Others\'', y=0.1)
-
 
 print(f'generate {FILE_PDF}')
 plt.savefig(FILE_PDF, dpi=300, bbox_inches='tight')
