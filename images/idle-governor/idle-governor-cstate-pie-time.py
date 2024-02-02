@@ -38,7 +38,7 @@ axs[0].pie(with_largest['Sleep[ns]'],
 # Right pie chart without the 2 longest sleeping C-States
 labels_scnd = without_largest['C-State'] + ' (' + without_largest['Perc'].round(2).astype(str) + '%)'
 axs[1].pie(without_largest['Sleep[ns]'],
-           startangle=90, wedgeprops=lineprops, labels=labels_scnd, radius=0.8, colors=colors2)
+           startangle=0, wedgeprops=lineprops, labels=labels_scnd, radius=0.8, colors=colors2)
 plt.title('Subset \'Others\'', y=0.06)
 
 print(f'generate {FILE_PDF}')
