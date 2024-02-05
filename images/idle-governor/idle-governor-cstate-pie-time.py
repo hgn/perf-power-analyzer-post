@@ -25,8 +25,8 @@ with_largest = grouped_data.loc[largest_i]
 with_largest.loc[len(with_largest)] = others_row
 with_largest['Perc'] = (with_largest['Sleep[ns]'] / with_largest['Sleep[ns]'].sum()) * 100
 
-colors1 = plt.get_cmap('Pastel2')(np.linspace(0, 1, len(grouped_data['C-State'])))
-colors2 = plt.get_cmap('Pastel1')(np.linspace(0, 1, len(grouped_data['C-State'])))
+colors1 = plt.get_cmap('Accent')(np.linspace(0, 1, len(grouped_data['C-State'])))
+colors2 = plt.get_cmap('Paired')(np.linspace(0, 1, len(grouped_data['C-State'])))
 
 fig, axs = plt.subplots(1, 2, figsize=(10, 30))
 

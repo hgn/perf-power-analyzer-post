@@ -14,7 +14,7 @@ lineprops = {"linewidth": 1, "edgecolor": "white"}
 
 df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State'])
 grouped_data = df.groupby('C-State')['C-State'].count().sort_values(ascending=False)
-colors = plt.get_cmap('Pastel2')(np.linspace(0, 1, len(grouped_data)))
+colors = plt.get_cmap('Paired')(np.linspace(0, 1, len(grouped_data)))
 
 def label_print(pct, allvals):
     absolute = int(round(pct/100.*sum(allvals)))
