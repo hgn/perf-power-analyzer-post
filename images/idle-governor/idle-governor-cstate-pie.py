@@ -23,7 +23,7 @@ def label_print(pct, allvals):
 df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State'])
 grouped_data = df.groupby('C-State')['C-State'].count().reset_index(name='Entries')
 grouped_data = grouped_data.iloc[grouped_data['C-State'].apply(cstate_key).argsort()]
-colors = plt.get_cmap('Paired')(np.linspace(0, 1, len(grouped_data)))
+colors = plt.get_cmap('viridis')(np.linspace(0, 1, len(grouped_data)))
 
 fig, ax = plt.subplots(figsize=(5, 5))
 
