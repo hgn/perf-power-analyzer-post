@@ -10,7 +10,7 @@ from pathlib import Path
 FILE_BASE = os.path.splitext(__file__)[0]
 FILE_DATA = FILE_BASE + ".txt"
 FILE_JSON = FILE_BASE + ".json"
-OUTPUT_FOLDER = "cstates"
+OUTPUT_FOLDER = "scatter"
 
 
 def unique_res(residencies, target_cpu=0):

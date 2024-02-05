@@ -1,7 +1,7 @@
 PYTHON_FILES := $(wildcard *.py)
 IMAGE_FILES := $(PYTHON_FILES:.py=.png)
 PDF_FILES := $(PYTHON_FILES:.py=.pdf)
-SCATTER_FOLDER := cstates
+SCATTER_FOLDER := scatter
 
 all: $(IMAGE_FILES)
 
