@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
+from pathlib import Path
+import json
 import os
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import json
-from pathlib import Path
+import pandas as pd
 
 FILE_BASE = os.path.splitext(__file__)[0]
 FILE_DATA = FILE_BASE + ".txt"
@@ -23,16 +23,33 @@ def unique_res(residencies, target_cpu=0):
 
 # target_cpu is used for retrieving the residency times
 def graph_scatter_sleeptime_by_sequence(df, graph_cstate, residencies, unique_res, target_cpu=0):
-    prev_color = 'red'
-    next_color = 'orange'
-    perfect_color = 'green'
-    df = df[df['C-State'] == cstate]
-    x = list(range(len(df)))
-    if len(x) == 0:
+    df = df[df['C-State'] == cstate].reset_index(drop=True)
+    if len(df) == 0:
         return
-    y=df['Sleep[ns]'].div(1000)
-    col = np.where(df['Miss'] == 0, perfect_color, np.where(df['Below'] == '0', prev_color, next_color))
-    plt.scatter(x=x, y=y, alpha=0.4, s=20, c=col, edgecolors="none")
+
+    prev_color = 'red'
+    prev_marker = '^'
+    prev_cond = (df['Below'] == '0') & (df['Miss'] != 0)
+
+    next_color = 'orange'
+    next_marker = 'v'
+    next_cond = (df['Below'] == '1') & (df['Miss'] != 0)
+
+    perfect_color = 'green'
+    perfect_marker = 'o'
+    perfect_cond = (df['Miss'] == 0)
+
+    df_perfect = df[perfect_cond]
+    df_prev = df[prev_cond]
+    df_next = df[next_cond]
+
+    i_perfect = df.loc[perfect_cond].index.to_list()
+    i_next = df.loc[next_cond].index.to_list()
+    i_prev = df.loc[prev_cond].index.to_list()
+
+    plt.scatter(x=i_perfect, y=df_perfect['Sleep[ns]'].div(1000), alpha=0.4, s=20, c=perfect_color, marker=perfect_marker, edgecolors="none")
+    plt.scatter(x=i_prev, y=df_prev['Sleep[ns]'].div(1000), alpha=0.4, s=20, c=prev_color, marker=prev_marker, edgecolors="none")
+    plt.scatter(x=i_next, y=df_next['Sleep[ns]'].div(1000), alpha=0.4, s=20, c=next_color, marker=next_marker, edgecolors="none")
 
     res_dict = residencies[list(residencies.keys())[target_cpu]]
     prev_res = None
