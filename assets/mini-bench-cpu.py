@@ -33,13 +33,13 @@ def cpu_load():
     end_time = time.time() + BENCH_TIME
     while time.time() < end_time:
         [math.sqrt(random.randint(1, 10000)) for _ in range(100000)]
-        time.sleep(random.uniform(0.0, 0.006))
+        time.sleep(random.choice([0.0, 0.006]))
 
 
 def sleep_load():
     end_time = time.time() + BENCH_TIME
     while time.time() < end_time:
-        time.sleep(random.uniform(0.0, 0.006))
+        time.sleep(random.choice([0.0, 0.006]))
 
 
 if __name__ == "__main__":
