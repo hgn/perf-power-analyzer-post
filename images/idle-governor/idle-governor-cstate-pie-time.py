@@ -22,6 +22,7 @@ without_largest = grouped_data.drop(largest_i)
 # Sum up all but the largest rows and add them to 'Others'
 others_row = {'C-State' : 'Others', 'Sleep[ns]' : without_largest['Sleep[ns]'].sum()}
 with_largest = grouped_data.loc[largest_i]
+with_largest = with_largest.reset_index()
 with_largest.loc[len(with_largest)] = others_row
 with_largest['Perc'] = (with_largest['Sleep[ns]'] / with_largest['Sleep[ns]'].sum()) * 100
 
