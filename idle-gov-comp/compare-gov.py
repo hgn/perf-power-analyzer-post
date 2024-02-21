@@ -82,6 +82,11 @@ def find_res(res : list, cstate : str, below : bool, target_cpu :int = 0):
     return res[index + 1] if index < len(res) - 1 else res[index]
 
 
+def normalize(time : int, res : int):
+    '''Normalizes a delta time according to the correspoding residency time'''
+    #TODO: come up with better normalize, maybe res - res_bound
+    return round(time // (res * 1000), 8)
+
 
 def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
     '''Returns the estimated performance of an idle-governor
@@ -94,8 +99,8 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
         if row['Miss'] == 1:
             bound_res = find_res(res, cstate, row['Below'] == '1')
             weight = (BELOW_PEN_WEIGHT if row['Below'] == '1' else ABOVE_PEN_WEIGHT)
-            #TODO: normalize the delta
-            perf += 1 - weight * (bound_res * 1000 - row['Sleep[ns]'])
+            #TODO: normalize right term
+            perf -= (1 + weight * (bound_res * 1000 - row['Sleep[ns]']))
         else:
             perf += 1
     perf = perf / len(gov_data)
