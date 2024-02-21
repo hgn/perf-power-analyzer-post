@@ -28,7 +28,7 @@ def cpu_load():
     end_time = time.time() + BENCH_TIME
     while time.time() < end_time:
         [math.sqrt(random.randint(1, 10000)) for _ in range(100000)]
-        time.sleep(random.choice([0.01, 0.05]))
+        time.sleep(random.uniform(0.01, 0.05))
 
 def io_load():
     change_comm_name("bench-io")
@@ -41,7 +41,7 @@ def io_load():
         with open(filename, "r") as f:
             _ = f.read()
         os.remove(filename)
-        time.sleep(random.choice([0.01, 0.05]))
+        time.sleep(random.uniform(0.01, 0.05))
 
 def network_load():
     change_comm_name("bench-net")
@@ -53,7 +53,7 @@ def network_load():
             requests.get(next(url_cycle))
         except requests.RequestException:
             pass
-        time.sleep(random.choice([0.01, 0.05]))
+        time.sleep(random.uniform(0.01, 0.05))
 
 def run_benchmark():
     processes = []

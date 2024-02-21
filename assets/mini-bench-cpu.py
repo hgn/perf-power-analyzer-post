@@ -22,35 +22,28 @@ import random
 import math
 import time
 
-PRE_POST_SLEEP = 20
 BENCH_TIME = 20
 # Adjust the type of workload with CPU_LOAD
 CPU_LOAD = False
 # Set a seed for reproducibility
 random.seed(0)
 
+
 def cpu_load():
     end_time = time.time() + BENCH_TIME
     while time.time() < end_time:
         [math.sqrt(random.randint(1, 10000)) for _ in range(100000)]
-        time.sleep(random.choice([0.0, 0.006]))
+        time.sleep(random.uniform(0.0, 0.006))
+
 
 def sleep_load():
     end_time = time.time() + BENCH_TIME
     while time.time() < end_time:
-        time.sleep(random.choice([0.0, 0.006]))
+        time.sleep(random.uniform(0.0, 0.006))
 
 
 if __name__ == "__main__":
-    print("Start Benchmark Suite now")
-    print(f"now sleep for {PRE_POST_SLEEP} seconds")
-    time.sleep(PRE_POST_SLEEP)
-    print(f"now bench for {BENCH_TIME} seconds")
     if CPU_LOAD:
-        print("Starting CPU Load")
         cpu_load()
     else:
-        print("Starting Sleep Load")
         sleep_load()
-    print(f"now sleep for {PRE_POST_SLEEP} seconds")
-    time.sleep(PRE_POST_SLEEP)
