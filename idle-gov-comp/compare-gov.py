@@ -91,14 +91,11 @@ def normalize(time : int, prev_res : int, next_res : int, target_res : int, weig
     '''Normalizes a delta time according to the correspoding residency time'''
     # Still need this for the case, that the slight offset defines it below or above the bound,
     # even though the sleep time does not validate it
-    # TODO: check if this can be None
-    data_min = min(time, prev_res, next_res)
-    data_max = max(time, prev_res, next_res)
-
-    # TODO: this does not account for above / below (time - data_min)
-    normalized_value = (time - data_min) / (data_max - data_min)
-    scale_factor = (next_res - prev_res) / (data_max - data_min)
-    return scale_factor * normalized_value
+    data_min = min(time, target_res, prev_res)
+    data_max = max(time, target_res, next_res)
+    norm_value = (time - data_min) / (data_max - data_min)
+    scale_factor = (target_res * weight) / (data_max - data_min)
+    return scale_factor * norm_value
 
 
 def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
