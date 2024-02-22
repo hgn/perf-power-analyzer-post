@@ -1,191 +1,107 @@
 [
   {
     "Idle-Governor": "ladder",
-    "C-State": "C10",
-    "Perf-Simple": -1.2577861163227018,
-    "Perf-Extended": 0.7744211613976423,
-    "Occurences": 2665
-  },
-  {
-    "Idle-Governor": "ladder",
-    "C-State": "C6",
-    "Perf-Simple": -3.227272727272727,
-    "Perf-Extended": 0.9220573436676525,
-    "Occurences": 352
-  },
-  {
-    "Idle-Governor": "ladder",
-    "C-State": "C8",
-    "Perf-Simple": -1.5301441677588468,
-    "Perf-Extended": 0.9950121823576532,
-    "Occurences": 1526
-  },
-  {
-    "Idle-Governor": "ladder",
     "C-State": "C3",
-    "Perf-Simple": -3.7176470588235295,
-    "Perf-Extended": 0.5752766276566382,
-    "Occurences": 85
+    "Perf-Simple": -1.8528393351800554,
+    "Perf-Extended": 0.4601264670170272,
+    "Occurences": 5776
   },
   {
     "Idle-Governor": "ladder",
-    "C-State": "C1E",
-    "Perf-Simple": -0.7946428571428571,
-    "Perf-Extended": 0.9462262510539562,
-    "Occurences": 112
+    "C-State": "C2",
+    "Perf-Simple": -0.39186351706036743,
+    "Perf-Extended": 0.996011508060834,
+    "Occurences": 3810
   },
   {
     "Idle-Governor": "ladder",
     "C-State": "C1",
-    "Perf-Simple": -0.6052631578947368,
-    "Perf-Extended": 0.9875028825808707,
-    "Occurences": 38
+    "Perf-Simple": -0.7056589441701481,
+    "Perf-Extended": 0.9717334143957916,
+    "Occurences": 2633
   },
   {
     "Idle-Governor": "ladder",
-    "C-State": "C9",
-    "Perf-Simple": -8.071428571428571,
-    "Perf-Extended": 0.4437961173657503,
-    "Occurences": 14
-  },
-  {
-    "Idle-Governor": "ladder",
-    "C-State": "C7s",
-    "Perf-Simple": -1.0,
-    "Perf-Extended": 0.9677839930555555,
-    "Occurences": 2
+    "C-State": "POLL",
+    "Perf-Simple": -0.8,
+    "Perf-Extended": 1.0,
+    "Occurences": 10
   },
   {
     "Idle-Governor": "ladder",
     "C-State": "all",
-    "Perf-Simple": -1.5365039632874427,
-    "Perf-Extended": 0.8567657169398564,
-    "Occurences": 4794
-  },
-  {
-    "Idle-Governor": "menu",
-    "C-State": "C10",
-    "Perf-Simple": -1.2577861163227018,
-    "Perf-Extended": 0.7744211613976423,
-    "Occurences": 2665
-  },
-  {
-    "Idle-Governor": "menu",
-    "C-State": "C6",
-    "Perf-Simple": -3.227272727272727,
-    "Perf-Extended": 0.9220573436676525,
-    "Occurences": 352
-  },
-  {
-    "Idle-Governor": "menu",
-    "C-State": "C8",
-    "Perf-Simple": -1.5301441677588468,
-    "Perf-Extended": 0.9950121823576532,
-    "Occurences": 1526
+    "Perf-Simple": -1.149807833837599,
+    "Perf-Extended": 0.7376783383192612,
+    "Occurences": 12229
   },
   {
     "Idle-Governor": "menu",
     "C-State": "C3",
-    "Perf-Simple": -3.7176470588235295,
-    "Perf-Extended": 0.5752766276566382,
-    "Occurences": 85
+    "Perf-Simple": -2.1333021515434987,
+    "Perf-Extended": 0.40669488804791487,
+    "Occurences": 6414
   },
   {
     "Idle-Governor": "menu",
-    "C-State": "C1E",
-    "Perf-Simple": -0.7946428571428571,
-    "Perf-Extended": 0.9462262510539562,
-    "Occurences": 112
+    "C-State": "C2",
+    "Perf-Simple": -0.17493214902541326,
+    "Perf-Extended": 0.9954004841064451,
+    "Occurences": 4053
   },
   {
     "Idle-Governor": "menu",
     "C-State": "C1",
-    "Perf-Simple": -0.6052631578947368,
-    "Perf-Extended": 0.9875028825808707,
-    "Occurences": 38
+    "Perf-Simple": -0.7653153153153153,
+    "Perf-Extended": 0.9685452462030548,
+    "Occurences": 2220
   },
   {
     "Idle-Governor": "menu",
-    "C-State": "C9",
-    "Perf-Simple": -8.071428571428571,
-    "Perf-Extended": 0.4437961173657503,
-    "Occurences": 14
-  },
-  {
-    "Idle-Governor": "menu",
-    "C-State": "C7s",
+    "C-State": "POLL",
     "Perf-Simple": -1.0,
-    "Perf-Extended": 0.9677839930555555,
-    "Occurences": 2
+    "Perf-Extended": 1.0,
+    "Occurences": 13
   },
   {
     "Idle-Governor": "menu",
     "C-State": "all",
-    "Perf-Simple": -1.5365039632874427,
-    "Perf-Extended": 0.8567657169398564,
-    "Occurences": 4794
-  },
-  {
-    "Idle-Governor": "teo",
-    "C-State": "C10",
-    "Perf-Simple": -1.2577861163227018,
-    "Perf-Extended": 0.7744211613976423,
-    "Occurences": 2665
-  },
-  {
-    "Idle-Governor": "teo",
-    "C-State": "C6",
-    "Perf-Simple": -3.227272727272727,
-    "Perf-Extended": 0.9220573436676525,
-    "Occurences": 352
-  },
-  {
-    "Idle-Governor": "teo",
-    "C-State": "C8",
-    "Perf-Simple": -1.5301441677588468,
-    "Perf-Extended": 0.9950121823576532,
-    "Occurences": 1526
+    "Perf-Simple": -1.2680314960629921,
+    "Perf-Extended": 0.6933913087081519,
+    "Occurences": 12700
   },
   {
     "Idle-Governor": "teo",
     "C-State": "C3",
-    "Perf-Simple": -3.7176470588235295,
-    "Perf-Extended": 0.5752766276566382,
-    "Occurences": 85
-  },
-  {
-    "Idle-Governor": "teo",
-    "C-State": "C1E",
-    "Perf-Simple": -0.7946428571428571,
-    "Perf-Extended": 0.9462262510539562,
-    "Occurences": 112
+    "Perf-Simple": -2.0714762859051437,
+    "Perf-Extended": 0.5297752188341452,
+    "Occurences": 5988
   },
   {
     "Idle-Governor": "teo",
     "C-State": "C1",
-    "Perf-Simple": -0.6052631578947368,
-    "Perf-Extended": 0.9875028825808707,
-    "Occurences": 38
+    "Perf-Simple": -0.7181451612903226,
+    "Perf-Extended": 0.9707056026437778,
+    "Occurences": 2480
   },
   {
     "Idle-Governor": "teo",
-    "C-State": "C9",
-    "Perf-Simple": -8.071428571428571,
-    "Perf-Extended": 0.4437961173657503,
-    "Occurences": 14
+    "C-State": "C2",
+    "Perf-Simple": -0.7334692028985508,
+    "Perf-Extended": 0.9956899658506868,
+    "Occurences": 4416
   },
   {
     "Idle-Governor": "teo",
-    "C-State": "C7s",
+    "C-State": "POLL",
     "Perf-Simple": -1.0,
-    "Perf-Extended": 0.9677839930555555,
-    "Occurences": 2
+    "Perf-Extended": 1.0,
+    "Occurences": 13
   },
   {
     "Idle-Governor": "teo",
     "C-State": "all",
-    "Perf-Simple": -1.5365039632874427,
-    "Perf-Extended": 0.8567657169398564,
-    "Occurences": 4794
+    "Perf-Simple": -1.3520198495774212,
+    "Perf-Extended": 0.7745685658782712,
+    "Occurences": 12897
   }
 ]

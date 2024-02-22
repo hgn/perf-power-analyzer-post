@@ -60,9 +60,9 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
 def main():
     perf = []
     for gov in GOVS:
-        #gov_data = read_gov(f'{gov}/{EVENT_FILE}')
-        gov_data = utils.read_gov(f'examples/{EVENT_FILE}')
-        res = utils.read_json(f'examples/{RES_FILE}')
+        gov_data = utils.read_gov(f'examples/{gov}/{EVENT_FILE}')
+        #gov_data = utils.read_gov(f'examples/{EVENT_FILE}')
+        res = utils.read_json(f'examples/{gov}/{RES_FILE}')
         cstates = gov_data['C-State'].unique()
         for cstate in cstates:
             perf_simple = simple_perf(gov_data, cstate)
