@@ -65,8 +65,10 @@ def simple_perf(gov_data : pd.DataFrame, cstate : str):
     return perf
 
 
-def find_res(res : list, cstate : str, below : bool, target_cpu :int = 0):
-    '''Returns the residency time below or above the cstate'''
+def find_res(res : list, cstate : str, below : bool = None, target_cpu : int = 0):
+    '''Returns the residency time in ns below or above the cstate
+    If target is True then below is ignored and the res in ns corresponding to the
+    cstate is returned'''
     res_dict = res[list(res.keys())[target_cpu]]
     res = unique_res(res)
     target_res = None
@@ -76,16 +78,27 @@ def find_res(res : list, cstate : str, below : bool, target_cpu :int = 0):
             target_res = int(res_state['residency'])
             break
 
+    if below is None:
+        return (target_res * 1000)
+
     index = res.index(int(target_res))
     if not below:
-        return res[index - 1] if index > 0 else 0
-    return res[index + 1] if index < len(res) - 1 else res[index]
+        return (res[index - 1] * 1000) if index > 0 else 0
+    return (res[index + 1] * 1000) if index < len(res) - 1 else res[index]
 
 
-def normalize(time : int, res : int):
+def normalize(time : int, prev_res : int, next_res : int, target_res : int, weight : int):
     '''Normalizes a delta time according to the correspoding residency time'''
-    #TODO: come up with better normalize, maybe res - res_bound
-    return round(time // (res * 1000), 8)
+    # Still need this for the case, that the slight offset defines it below or above the bound,
+    # even though the sleep time does not validate it
+    # TODO: check if this can be None
+    data_min = min(time, prev_res, next_res)
+    data_max = max(time, prev_res, next_res)
+
+    # TODO: this does not account for above / below (time - data_min)
+    normalized_value = (time - data_min) / (data_max - data_min)
+    scale_factor = (next_res - prev_res) / (data_max - data_min)
+    return scale_factor * normalized_value
 
 
 def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
@@ -97,10 +110,12 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
     perf = 0
     for _, row in gov_data.iterrows():
         if row['Miss'] == 1:
-            bound_res = find_res(res, cstate, row['Below'] == '1')
+            prev_res = find_res(res, cstate, False)
+            next_res = find_res(res, cstate, True)
+            target_res = find_res(res, cstate)
             weight = (BELOW_PEN_WEIGHT if row['Below'] == '1' else ABOVE_PEN_WEIGHT)
-            #TODO: normalize right term
-            perf -= (1 + weight * (bound_res * 1000 - row['Sleep[ns]']))
+            pen = normalize(row['Sleep[ns]'], prev_res, next_res, target_res, weight)
+            perf += (1 - pen)
         else:
             perf += 1
     perf = perf / len(gov_data)
