@@ -58,10 +58,10 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
 
 
 def main():
+    '''Compares all Governors in the GOVS variable with each other'''
     perf = []
     for gov in GOVS:
         gov_data = utils.read_gov(f'examples/{gov}/{EVENT_FILE}')
-        #gov_data = utils.read_gov(f'examples/{EVENT_FILE}')
         res = utils.read_json(f'examples/{gov}/{RES_FILE}')
         cstates = gov_data['C-State'].unique()
         for cstate in cstates:

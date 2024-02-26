@@ -2,6 +2,7 @@
 
 import json
 import pandas as pd
+import re
 
 
 def read_gov(file_name : str):
@@ -65,3 +66,9 @@ def normalize(time : int, prev_res : int, next_res : int, target_res : int, weig
     norm_value = (time - data_min) / (data_max - data_min)
     scale_factor = (target_res * weight) / (data_max - data_min)
     return scale_factor * norm_value
+
+
+def cstate_key(cstate):
+    '''Alphanumeric sort for C-States'''
+    return [int(text) if text.isdigit() else text.lower()
+            for text in re.split('([0-9]+)', str(cstate))]
