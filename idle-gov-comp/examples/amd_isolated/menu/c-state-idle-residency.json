@@ -1,0 +1,218 @@
+{
+    "cpu0": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu1": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu2": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu3": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu4": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu5": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu6": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu7": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu8": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu9": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu10": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    },
+    "cpu11": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C2",
+            "residency": "36"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "700"
+        }
+    }
+}
