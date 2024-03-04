@@ -6,27 +6,27 @@ import re
 
 
 def read_gov(file_name : str):
-    '''Reads a csv and returns a pandas dataframe'''
+    """Read csv and return a pandas dataframe."""
     gov_data = pd.read_csv(file_name, delim_whitespace=True,
                       usecols=['C-State', 'Sleep[ns]', 'Miss', 'Below'])
     return gov_data
 
 
 def read_json(file_name : str):
-    '''Reads a JSON file and returns the data'''
+    """Read JSON file and return the data."""
     with open(file_name, 'r', encoding='utf-8') as json_file:
         data = json.load(json_file)
     return data
 
 
 def save_json(data : list, file_name : str):
-    '''Saves the data into a JSON'''
+    """Save data into JSON."""
     with open(file_name, 'w', encoding='utf-8') as json_file:
         json.dump(data, json_file, indent=2)
 
 
 def unique_res(residencies, target_cpu=0):
-    ''' Returns the set of residencies for given CPU default is 0'''
+    """Return the set of residencies for given CPU default is 0."""
     res_dict = residencies[list(residencies.keys())[target_cpu]]
     res = set()
     for state in res_dict.values():
@@ -36,9 +36,12 @@ def unique_res(residencies, target_cpu=0):
 
 
 def find_res(res : list, cstate : str, below : bool = None, target_cpu : int = 0):
-    '''Returns the residency time in ns below or above the cstate
+    """
+    Return the residency time in ns below or above the cstate.
+
     If target is True then below is ignored and the res in ns corresponding to the
-    cstate is returned'''
+    cstate is returned.
+    """
     res_dict = res[list(res.keys())[target_cpu]]
     res = unique_res(res)
     target_res = None
@@ -49,7 +52,7 @@ def find_res(res : list, cstate : str, below : bool = None, target_cpu : int = 0
             break
 
     if below is None:
-        return (target_res * 1000)
+        return target_res * 1000
 
     index = res.index(int(target_res))
     if not below:
@@ -68,7 +71,38 @@ def normalize(time : int, prev_res : int, next_res : int, target_res : int, weig
     return scale_factor * norm_value
 
 
+def normalize_above(time : int, target_res : int, weight : int):
+    """Normalize a delta time according to the correspoding residency time.
+
+    In order to have values between 0 and 1, weight needs to be in that range too.
+    This function ensures to normalize values disregarding the underlying data."""
+    data_min = 0
+    data_max = target_res
+    norm_value = (time - data_min) / (data_max - data_min)
+    return weight * norm_value
+
+
+def normalize_below(time : int, max_res : int, next_res : int, weight : int):
+    """
+    Normalize a delta time according to the correspoding residency time.
+
+    In order to have values between 0 and 1, weight needs to be in that range too.
+    This function ensures to normalize values disregarding the underlying data.
+    """
+    # Still need this for the case, that the slight offset defines it below or above the bound,
+    # even though the sleep time does not validate it
+    data_min = next_res
+    data_max = max_res
+    if data_min == data_max:
+        # If we enter the second to last and last C-State we just return the weight
+        return weight
+    time = min(time, max_res)
+    norm_value = (time - data_min) / (data_max - data_min)
+    return weight * abs(1 - norm_value)
+
+
+
 def cstate_key(cstate):
-    '''Alphanumeric sort for C-States'''
+    """Alphanumeric sort for C-States."""
     return [int(text) if text.isdigit() else text.lower()
             for text in re.split('([0-9]+)', str(cstate))]

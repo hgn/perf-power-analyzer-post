@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-'''
+"""
 This module defines a metric used for comparing idle-governors.
 
 For input it uses the data collected by the perf-power module.
-'''
+"""
 
 import pandas as pd
 import utils
@@ -14,12 +14,12 @@ GOVS = ['ladder', 'menu', 'teo']
 EVENT_FILE = 'idle-governor-events.txt'
 RES_FILE = 'c-state-idle-residency.json'
 PERFORMANCE_FILE = 'idle-governor-performance.json'
-ABOVE_PEN_WEIGHT = 10
-BELOW_PEN_WEIGHT = 1
+ABOVE_PEN_WEIGHT = 0.1
+BELOW_PEN_WEIGHT = 0.8
 
 
 def simple_perf(gov_data : pd.DataFrame, cstate : str):
-    '''Returns the estimated performance of an idle-governor'''
+    """Return the estimated performance of an idle-governor."""
     gov_data = gov_data[gov_data['C-State'] == cstate].reset_index(drop=True)
     if len(gov_data) == 0:
         return None
@@ -37,8 +37,7 @@ def simple_perf(gov_data : pd.DataFrame, cstate : str):
 
 
 def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
-    '''Returns the estimated performance of an idle-governor
-    The extended version utilizes the delta of the sleep and the residency bounds'''
+    """Return the estimated performance of an idle-governor utilizing the delta of sleep and res."""
     gov_data = gov_data[gov_data['C-State'] == cstate].reset_index(drop=True)
     if len(gov_data) == 0:
         return None
@@ -49,7 +48,11 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
             next_res = utils.find_res(res, cstate, True)
             target_res = utils.find_res(res, cstate)
             weight = (BELOW_PEN_WEIGHT if row['Below'] == '1' else ABOVE_PEN_WEIGHT)
-            pen = utils.normalize(row['Sleep[ns]'], prev_res, next_res, target_res, weight)
+            max_res = (max(utils.unique_res(res)) * 1000)
+            if row['Below'] == '0':
+                pen = utils.normalize_above(row['Sleep[ns]'], target_res, weight)
+            else:
+                pen = utils.normalize_below(row['Sleep[ns]'], max_res, next_res, weight)
             perf += (1 - pen)
         else:
             perf += 1
@@ -58,7 +61,7 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
 
 
 def main():
-    '''Compares all Governors in the GOVS variable with each other'''
+    """Compare all Governors in the GOVS variable."""
     perf = []
     for gov in GOVS:
         gov_data = utils.read_gov(f'examples/{gov}/{EVENT_FILE}')
@@ -71,7 +74,6 @@ def main():
                          'Perf-Simple' : perf_simple,
                          'Perf-Extended' : perf_extended,
                          'Occurences' : len(gov_data[gov_data['C-State'] == cstate])})
-            extended_perf(gov_data, res, cstate)
         occ_total = sum(entry['Occurences'] for entry in perf if entry.get('Idle-Governor') == gov)
         perf_simple_total = sum(entry['Perf-Simple']*entry['Occurences']/occ_total
                                 for entry in perf if entry.get('Idle-Governor') == gov)

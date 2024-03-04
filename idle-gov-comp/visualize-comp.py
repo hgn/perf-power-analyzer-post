@@ -55,7 +55,7 @@ def scatter_plot(perf_df : pd.DataFrame, file_name : str = 'scatter'):
     perf_df = perf_df[perf_df['C-State'] != 'all']
     perf_df = perf_df.iloc[perf_df['C-State'].apply(utils.cstate_key).argsort()]
     sns.scatterplot(x='C-State', y='Perf-Extended', hue='Idle-Governor', size='Occurences',
-                    sizes=(10, 200), palette=COLORS, data=perf_df, alpha=0.6)
+                    sizes=(10, 200), palette=COLORS, data=perf_df, alpha=0.4)
 
 
 def main():
