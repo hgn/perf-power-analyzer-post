@@ -1,0 +1,154 @@
+{
+    "cpu0": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C1E",
+            "residency": "20"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "100"
+        },
+        "state4": {
+            "name": "C6",
+            "residency": "200"
+        },
+        "state5": {
+            "name": "C7s",
+            "residency": "800"
+        },
+        "state6": {
+            "name": "C8",
+            "residency": "800"
+        },
+        "state7": {
+            "name": "C9",
+            "residency": "5000"
+        },
+        "state8": {
+            "name": "C10",
+            "residency": "5000"
+        }
+    },
+    "cpu1": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C1E",
+            "residency": "20"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "100"
+        },
+        "state4": {
+            "name": "C6",
+            "residency": "200"
+        },
+        "state5": {
+            "name": "C7s",
+            "residency": "800"
+        },
+        "state6": {
+            "name": "C8",
+            "residency": "800"
+        },
+        "state7": {
+            "name": "C9",
+            "residency": "5000"
+        },
+        "state8": {
+            "name": "C10",
+            "residency": "5000"
+        }
+    },
+    "cpu2": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C1E",
+            "residency": "20"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "100"
+        },
+        "state4": {
+            "name": "C6",
+            "residency": "200"
+        },
+        "state5": {
+            "name": "C7s",
+            "residency": "800"
+        },
+        "state6": {
+            "name": "C8",
+            "residency": "800"
+        },
+        "state7": {
+            "name": "C9",
+            "residency": "5000"
+        },
+        "state8": {
+            "name": "C10",
+            "residency": "5000"
+        }
+    },
+    "cpu3": {
+        "state0": {
+            "name": "POLL",
+            "residency": "0"
+        },
+        "state1": {
+            "name": "C1",
+            "residency": "2"
+        },
+        "state2": {
+            "name": "C1E",
+            "residency": "20"
+        },
+        "state3": {
+            "name": "C3",
+            "residency": "100"
+        },
+        "state4": {
+            "name": "C6",
+            "residency": "200"
+        },
+        "state5": {
+            "name": "C7s",
+            "residency": "800"
+        },
+        "state6": {
+            "name": "C8",
+            "residency": "800"
+        },
+        "state7": {
+            "name": "C9",
+            "residency": "5000"
+        },
+        "state8": {
+            "name": "C10",
+            "residency": "5000"
+        }
+    }
+}

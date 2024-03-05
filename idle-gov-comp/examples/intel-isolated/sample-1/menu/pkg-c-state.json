@@ -1,0 +1,4 @@
+{"counter-value" : "141719472.000000", "unit" : "", "event" : "cstate_pkg/c3-residency/", "event-runtime" : 21717577790, "pcnt-running" : 100.00, "metric-value" : "0.000000", "metric-unit" : "(null)"}
+{"counter-value" : "2477909304.000000", "unit" : "", "event" : "cstate_pkg/c6-residency/", "event-runtime" : 21717579900, "pcnt-running" : 100.00, "metric-value" : "0.000000", "metric-unit" : "(null)"}
+{"counter-value" : "11450321592.000000", "unit" : "", "event" : "cstate_pkg/c2-residency/", "event-runtime" : 21717579117, "pcnt-running" : 100.00, "metric-value" : "0.000000", "metric-unit" : "(null)"}
+{"counter-value" : "92440968.000000", "unit" : "", "event" : "cstate_pkg/c7-residency/", "event-runtime" : 21717578362, "pcnt-running" : 100.00, "metric-value" : "0.000000", "metric-unit" : "(null)"}
