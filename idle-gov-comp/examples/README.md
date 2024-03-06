@@ -30,10 +30,14 @@ Then execute a workload with core affinity `taskset` on {cpu}.
 
 ### AMD Isolated
 
-| Sample | Workload   | Length | IRQ      |
-|--------|------------|--------|----------|
-| 1      | Mini-Bench | 20s    | Enabled  |
-| 2      | Mini-Bench | 120s   | Disabled |
+| Sample | Workload   | Length | IRQ      | HZ       |
+|--------|------------|--------|----------|----------|
+| 1      | Mini-Bench | 20s    | Enabled  | -        |
+| 2      | Mini-Bench | 120s   | Disabled | -        |
+| 3      | Mini-Bench | 120s   | Disabled | Enabled  |
+| 4      | Mini-Bench | 120s   | Disabled | Enabled  |
+| 5      | Mini-Bench | 120s   | Disabled | Disabled |
+
 
 ### AMD Unisolated
 
