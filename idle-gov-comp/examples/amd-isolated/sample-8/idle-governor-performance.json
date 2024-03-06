@@ -1,0 +1,107 @@
+[
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C1",
+    "Perf-Simple": 0.3995666343699054,
+    "Perf-Extended": 0.884551394249592,
+    "Occurences": 56765
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C3",
+    "Perf-Simple": -0.042725258493360375,
+    "Perf-Extended": 0.9672737045526493,
+    "Occurences": 10832
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C2",
+    "Perf-Simple": 0.3190043847495721,
+    "Perf-Extended": 0.9509683434122275,
+    "Occurences": 61349
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "POLL",
+    "Perf-Simple": -0.47774979807222717,
+    "Perf-Extended": 0.3574787303161302,
+    "Occurences": 168376
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "all",
+    "Perf-Simple": -0.130001816213399,
+    "Perf-Extended": 0.6027837302924031,
+    "Occurences": 297322
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C3",
+    "Perf-Simple": 0.283232684708888,
+    "Perf-Extended": 0.9854084669989667,
+    "Occurences": 13413
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C2",
+    "Perf-Simple": 0.11534996410609226,
+    "Perf-Extended": 0.8475682597509072,
+    "Occurences": 55720
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C1",
+    "Perf-Simple": 0.49709443099279155,
+    "Perf-Extended": 0.9092549838123712,
+    "Occurences": 39648
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "POLL",
+    "Perf-Simple": -0.47927852717704966,
+    "Perf-Extended": 0.35663027750644566,
+    "Occurences": 136554
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "all",
+    "Perf-Simple": -0.14475023946905607,
+    "Perf-Extended": 0.5918161685612968,
+    "Occurences": 245335
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C3",
+    "Perf-Simple": 0.4510744985672826,
+    "Perf-Extended": 0.9935802078573265,
+    "Occurences": 15356
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C2",
+    "Perf-Simple": -0.02257712852937183,
+    "Perf-Extended": 0.767601715531826,
+    "Occurences": 55038
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C1",
+    "Perf-Simple": 0.5198038254045971,
+    "Perf-Extended": 0.9123087270218743,
+    "Occurences": 20390
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "POLL",
+    "Perf-Simple": -0.4869572588398852,
+    "Perf-Extended": 0.3534340410774909,
+    "Occurences": 106174
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "all",
+    "Perf-Simple": -0.17983174077755976,
+    "Perf-Extended": 0.5769360052023034,
+    "Occurences": 196958
+  }
+]
