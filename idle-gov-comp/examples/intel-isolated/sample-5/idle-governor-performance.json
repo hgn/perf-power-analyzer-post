@@ -1,0 +1,212 @@
+[
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C10",
+    "Perf-Simple": 0.9726200873362454,
+    "Perf-Extended": 0.9998258023493454,
+    "Occurences": 2290
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C8",
+    "Perf-Simple": 0.9796285988969393,
+    "Perf-Extended": 0.9997270880306632,
+    "Occurences": 39526
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C6",
+    "Perf-Simple": 0.7594433028208641,
+    "Perf-Extended": 0.9112234538635824,
+    "Occurences": 16059
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C3",
+    "Perf-Simple": 0.10918088018529412,
+    "Perf-Extended": 0.879322030006318,
+    "Occurences": 4749
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C1E",
+    "Perf-Simple": 0.4111806311207923,
+    "Perf-Extended": 0.8121934175401375,
+    "Occurences": 3676
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C1",
+    "Perf-Simple": 0.30996015936254956,
+    "Perf-Extended": 0.7243241252660045,
+    "Occurences": 502
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "POLL",
+    "Perf-Simple": -0.5155660377358553,
+    "Perf-Extended": 0.3285225627987045,
+    "Occurences": 848
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C9",
+    "Perf-Simple": -0.4936170212765962,
+    "Perf-Extended": 0.9913629429787234,
+    "Occurences": 47
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C7s",
+    "Perf-Simple": -0.19473684210526346,
+    "Perf-Extended": 0.7121751167763165,
+    "Occurences": 152
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "all",
+    "Perf-Simple": 0.808259517457894,
+    "Perf-Extended": 0.949118148507121,
+    "Occurences": 67849
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C10",
+    "Perf-Simple": 0.9769656262346909,
+    "Perf-Extended": 0.9998101947767679,
+    "Occurences": 2531
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C8",
+    "Perf-Simple": 0.9879377025190844,
+    "Perf-Extended": 0.9998915930607822,
+    "Occurences": 38268
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C3",
+    "Perf-Simple": -0.004639602319801371,
+    "Perf-Extended": 0.8703001649061038,
+    "Occurences": 4828
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C1E",
+    "Perf-Simple": 0.7774552683896668,
+    "Perf-Extended": 0.9220885770195157,
+    "Occurences": 2515
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C6",
+    "Perf-Simple": 0.766746427384527,
+    "Perf-Extended": 0.9068383247891252,
+    "Occurences": 15045
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C1",
+    "Perf-Simple": 0.9523809523809523,
+    "Perf-Extended": 0.9791785061940884,
+    "Occurences": 189
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C9",
+    "Perf-Simple": -0.36888888888888893,
+    "Perf-Extended": 0.989912332888889,
+    "Occurences": 45
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C7s",
+    "Perf-Simple": -0.47241379310344833,
+    "Perf-Extended": 0.527809068965517,
+    "Occurences": 29
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "POLL",
+    "Perf-Simple": -0.8000000000000002,
+    "Perf-Extended": 0.20753218620781638,
+    "Occurences": 21
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "all",
+    "Perf-Simple": 0.8489010729309532,
+    "Perf-Extended": 0.9643442057256731,
+    "Occurences": 63471
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C10",
+    "Perf-Simple": 0.977991016741528,
+    "Perf-Extended": 0.9998587438628012,
+    "Occurences": 2449
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C8",
+    "Perf-Simple": 0.9875884765063937,
+    "Perf-Extended": 0.9998845657827731,
+    "Occurences": 38287
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C6",
+    "Perf-Simple": 0.7628619879989696,
+    "Perf-Extended": 0.9048008379300074,
+    "Occurences": 15332
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C3",
+    "Perf-Simple": -0.007048815069881157,
+    "Perf-Extended": 0.8738735903045017,
+    "Occurences": 4937
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C1E",
+    "Perf-Simple": 0.7984986171473775,
+    "Perf-Extended": 0.9333959844056153,
+    "Occurences": 2531
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C9",
+    "Perf-Simple": -0.3088235294117647,
+    "Perf-Extended": 0.9982916264705883,
+    "Occurences": 34
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C1",
+    "Perf-Simple": 0.8941176470588235,
+    "Perf-Extended": 0.9588897227412322,
+    "Occurences": 187
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C7s",
+    "Perf-Simple": -0.5258064516129035,
+    "Perf-Extended": 0.42567304435483844,
+    "Occurences": 31
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "POLL",
+    "Perf-Simple": -0.8000000000000004,
+    "Perf-Extended": 0.20703147198273242,
+    "Occurences": 33
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "all",
+    "Perf-Simple": 0.8461681891540482,
+    "Perf-Extended": 0.963846731158316,
+    "Occurences": 63821
+  }
+]

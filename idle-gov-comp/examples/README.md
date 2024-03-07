@@ -19,12 +19,21 @@ Then execute a workload with core affinity `taskset` on {cpu}.
 
 ### Intel Isolated
 
-| Sample | Workload   | Length | IRQ     |
-|--------|------------|--------|---------|
-| 1      | Mini-Bench | 20s    | Enabled |
-| 2      | Mini-Bench | 20s    | Enabled |
-| 3      | Mini-Bench | 120s   | Enabled |
-| 4      | Mini-Bench | 120s   | Enabled |
+| Sample | Workload     | Length | IRQ      | HZ       | Parameters                    |
+|--------|--------------|--------|----------|----------|-------------------------------|
+| 1      | Mini-Bench   | 20s    | Enabled  | -        |                               |
+| 2      | Mini-Bench   | 20s    | Enabled  | -        |                               |
+| 3      | Mini-Bench   | 120s   | Enabled  | -        |                               |
+| 4      | Mini-Bench   | 120s   | Enabled  | -        |                               |
+| 5      | Mini-Bench   | 120s   | Disabled | Enabled  |                               |
+| 6      | Mini-Bench   | 120s   | Disabled | Disabled |                               |
+| 7      | io-net-bench | 120s   | Disabled | Enabled  | 1 Worker, No net, No Pre-Post |
+| 8      | io-net-bench | 120s   | Disabled | Disabled | 1 Worker, No net, No Pre-Post |
+| 9      | stress       | 120s   | Disabled | Enabled  | 1 CPU Worker                  |
+| 10     | stress       | 120s   | Disabled | Disabled | 1 CPU Worker                  |
+| 11     | stress       | 120s   | Disabled | Enabled  | 8 IO Workers                  |
+| 12     | stress       | 120s   | Disabled | Disabled | 8 IO Workers                  |
+
 
 ## AMD Examples (ACPI)
 

@@ -1,0 +1,177 @@
+[
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C10",
+    "Perf-Simple": -0.05006025077345398,
+    "Perf-Extended": 0.990010341840745,
+    "Occurences": 30705
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "POLL",
+    "Perf-Simple": -0.7224564619614928,
+    "Perf-Extended": 0.23719639745907525,
+    "Occurences": 1091
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C1",
+    "Perf-Simple": -0.70186915887851,
+    "Perf-Extended": 0.4346889941072705,
+    "Occurences": 428
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C1E",
+    "Perf-Simple": -0.47083333333333366,
+    "Perf-Extended": 0.512635863095238,
+    "Occurences": 48
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C6",
+    "Perf-Simple": 0.09999999999999998,
+    "Perf-Extended": 0.6199375238095237,
+    "Occurences": 2
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "C9",
+    "Perf-Simple": -0.1,
+    "Perf-Extended": 0.99978998,
+    "Occurences": 1
+  },
+  {
+    "Idle-Governor": "ladder",
+    "C-State": "all",
+    "Perf-Simple": -0.0820511231603066,
+    "Perf-Extended": 0.9564660539669102,
+    "Occurences": 32275
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C10",
+    "Perf-Simple": -0.041228911933098224,
+    "Perf-Extended": 0.9908948057279028,
+    "Occurences": 32305
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "POLL",
+    "Perf-Simple": -0.6921052631578788,
+    "Perf-Extended": 0.2504654213732275,
+    "Occurences": 1368
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C1",
+    "Perf-Simple": -0.7129824561403578,
+    "Perf-Extended": 0.4398145083491858,
+    "Occurences": 570
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C1E",
+    "Perf-Simple": -0.4750000000000001,
+    "Perf-Extended": 0.47710026214771617,
+    "Occurences": 84
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C6",
+    "Perf-Simple": 0.6347826086956523,
+    "Perf-Extended": 0.9804864182194616,
+    "Occurences": 23
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C7s",
+    "Perf-Simple": -0.1875,
+    "Perf-Extended": 0.87357978125,
+    "Occurences": 8
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C8",
+    "Perf-Simple": 0.35294117647058837,
+    "Perf-Extended": 0.989064948529412,
+    "Occurences": 34
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C9",
+    "Perf-Simple": -0.13414634146341456,
+    "Perf-Extended": 0.9921228965853657,
+    "Occurences": 41
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "C3",
+    "Perf-Simple": 0.0,
+    "Perf-Extended": 0.8159612916666666,
+    "Occurences": 4
+  },
+  {
+    "Idle-Governor": "menu",
+    "C-State": "all",
+    "Perf-Simple": -0.07856085024824232,
+    "Perf-Extended": 0.9510518629759744,
+    "Occurences": 34437
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C10",
+    "Perf-Simple": -0.0382970823922153,
+    "Perf-Extended": 0.9909150558299564,
+    "Occurences": 32321
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "POLL",
+    "Perf-Simple": -0.7120521172638301,
+    "Perf-Extended": 0.2416687317272184,
+    "Occurences": 1228
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C1E",
+    "Perf-Simple": -0.5000000000000003,
+    "Perf-Extended": 0.4928256233766233,
+    "Occurences": 55
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C1",
+    "Perf-Simple": -0.7397151898734252,
+    "Perf-Extended": 0.4419913657795745,
+    "Occurences": 632
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C6",
+    "Perf-Simple": 0.5857142857142856,
+    "Perf-Extended": 0.9142634115646259,
+    "Occurences": 7
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C9",
+    "Perf-Simple": -0.1,
+    "Perf-Extended": 0.99149862,
+    "Occurences": 1
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "C8",
+    "Perf-Simple": 1.0,
+    "Perf-Extended": 1.0,
+    "Occurences": 1
+  },
+  {
+    "Idle-Governor": "teo",
+    "C-State": "all",
+    "Perf-Simple": -0.07598773543579439,
+    "Perf-Extended": 0.953101767177702,
+    "Occurences": 34245
+  }
+]
