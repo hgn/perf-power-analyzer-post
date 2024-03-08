@@ -11,6 +11,7 @@ BASE_FOLDER = 'examples/'
 VIS_FOLDER = BASE_FOLDER + 'visualization/'
 GOVS = ['ladder', 'menu', 'teo']
 COLORS = ['g', 'deeppink', 'dodgerblue']
+LINE_STYLES = [':', '--', '-.']
 
 
 def save(plot):
@@ -46,7 +47,9 @@ def line_plot(perf_df : pd.DataFrame, file_name : str = 'line'):
     '''Generates a line plot in the plt environment'''
     perf_df = perf_df[perf_df['C-State'] != 'all']
     perf_df = perf_df.iloc[perf_df['C-State'].apply(utils.cstate_key).argsort()]
-    sns.lineplot(data=perf_df, x='C-State', y='Perf-Extended', hue='Idle-Governor')
+    for col, gov, line_style in zip(COLORS,GOVS, LINE_STYLES):
+        print(perf_df.loc[perf_df['Idle-Governor'] == gov])
+        sns.lineplot(perf_df.loc[perf_df['Idle-Governor'] == gov], x='C-State', y='Perf-Extended', alpha=.4, linestyle=line_style)
 
 
 @save
