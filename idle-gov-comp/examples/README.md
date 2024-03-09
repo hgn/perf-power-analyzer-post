@@ -33,6 +33,10 @@ Then execute a workload with core affinity `taskset` on {cpu}.
 | 10     | stress       | 120s   | Disabled | Disabled | 1 CPU Worker                  |
 | 11     | stress       | 120s   | Disabled | Enabled  | 8 IO Workers                  |
 | 12     | stress       | 120s   | Disabled | Disabled | 8 IO Workers                  |
+| 13     | Mini-Bench   | 120s   | Disabled | Enabled  | rcu-nocbs                     |
+| 14     | Mini-Bench   | 120s   | Disabled | Enabled  | rcu-nocbs                     |
+| 15     | Mini-Bench   | 30 min | Disabled | Enabled  | rcu-nocbs                     |
+| 16     | stress       | 30 min | Disabled | Enabled  | rcu-nocbs 8 IO Workers        |
 
 
 ## AMD Examples (ACPI)
