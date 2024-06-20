@@ -9,8 +9,8 @@ import utils
 
 BASE_FOLDER = 'examples/'
 VIS_FOLDER = BASE_FOLDER + 'visualization/'
-GOVS = ['ladder', 'menu', 'teo']
-COLORS = ['g', 'deeppink', 'dodgerblue']
+GOVS = ['ladder', 'menu', 'teo', 'eagle']
+COLORS = ['g', 'deeppink', 'dodgerblue', 'y']
 LINE_STYLES = [':', '--', '-.']
 
 

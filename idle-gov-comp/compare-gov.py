@@ -10,7 +10,7 @@ import pandas as pd
 import utils
 
 
-GOVS = ['ladder', 'menu', 'teo']
+GOVS = ['ladder', 'menu', 'teo', 'eagle']
 EVENT_FILE = 'idle-governor-events.txt'
 RES_FILE = 'c-state-idle-residency.json'
 PERFORMANCE_FILE = 'idle-governor-performance.json'
