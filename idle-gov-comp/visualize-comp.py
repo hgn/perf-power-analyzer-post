@@ -12,6 +12,7 @@ VIS_FOLDER = BASE_FOLDER + 'visualization/'
 GOVS = ['ladder', 'menu', 'teo', 'eagle']
 COLORS = ['g', 'deeppink', 'dodgerblue', 'y']
 LINE_STYLES = [':', '--', '-.']
+COMP_METRIC = 'Perf-Extended'
 
 
 def save(plot):
@@ -36,9 +37,9 @@ def density_plot(perf_df : pd.DataFrame, file_name : str = 'density'):
     perf_df = perf_df.iloc[perf_df['C-State'].apply(utils.cstate_key).argsort()]
     plt.figure(figsize=(16,10), dpi=300)
     for col, gov in zip(COLORS, GOVS):
-        sns.kdeplot(perf_df.loc[perf_df['Idle-Governor'] == gov, 'Perf-Extended'],
+        sns.kdeplot(perf_df.loc[perf_df['Idle-Governor'] == gov, COMP_METRIC],
                     fill=True, color=col, label=gov, alpha=.4)
-    plt.title('Density Plot of Perf-Extended Grouped by Idle-Governors', fontsize=22)
+    plt.title('Density Plot of ' + COMP_METRIC + ' Grouped by Idle-Governors', fontsize=22)
     plt.legend()
 
 
@@ -48,8 +49,7 @@ def line_plot(perf_df : pd.DataFrame, file_name : str = 'line'):
     perf_df = perf_df[perf_df['C-State'] != 'all']
     perf_df = perf_df.iloc[perf_df['C-State'].apply(utils.cstate_key).argsort()]
     for col, gov, line_style in zip(COLORS,GOVS, LINE_STYLES):
-        print(perf_df.loc[perf_df['Idle-Governor'] == gov])
-        sns.lineplot(perf_df.loc[perf_df['Idle-Governor'] == gov], x='C-State', y='Perf-Extended', alpha=.4, linestyle=line_style)
+        sns.lineplot(perf_df.loc[perf_df['Idle-Governor'] == gov], x='C-State', y=COMP_METRIC, alpha=.4, linestyle=line_style)
 
 
 @save
@@ -57,8 +57,47 @@ def scatter_plot(perf_df : pd.DataFrame, file_name : str = 'scatter'):
     '''Generates a scatter plot in the plt environment'''
     perf_df = perf_df[perf_df['C-State'] != 'all']
     perf_df = perf_df.iloc[perf_df['C-State'].apply(utils.cstate_key).argsort()]
-    sns.scatterplot(x='C-State', y='Perf-Extended', hue='Idle-Governor', size='Occurences',
+    sns.scatterplot(x='C-State', y=COMP_METRIC, hue='Idle-Governor', size='Occurences',
                     sizes=(10, 200), palette=COLORS, data=perf_df, alpha=0.4)
+
+
+@save
+def bar_plot(perf_df: pd.DataFrame, file_name: str = 'bar_plot'):
+    '''Generates a bar plot in the plt environment'''
+    plt.figure(figsize=(10, 6))
+    sorted_perf_df = perf_df.sort_values(by=COMP_METRIC, ascending=False)
+    sns.barplot(x='Idle-Governor', y=COMP_METRIC, data=sorted_perf_df, palette='viridis')
+    plt.xlabel('Approach')
+    plt.ylabel('Performance Score')
+    plt.title('Performance Scores of Different Approaches')
+    plt.xticks(rotation=45)
+    plt.ylim(0, 1)  # Assuming scores are normalized between 0 and 1
+
+
+@save
+def line_plot_2(perf_df: pd.DataFrame, file_name: str = 'line_plot_2'):
+    '''Generates a line plot in the plt environment'''
+    plt.figure(figsize=(12, 8))
+    for approach, group in perf_df.groupby('Idle-Governor'):
+        sns.lineplot(x='C-State', y=COMP_METRIC, data=group, marker='o', label=approach)
+
+    plt.xlabel('C-State')
+    plt.ylabel('Performance Score')
+    plt.legend()
+    plt.ylim(0, 1)  # Assuming scores are normalized between 0 and 1
+    plt.grid(True)
+
+
+@save
+def heatmap(perf_df: pd.DataFrame, file_name: str = 'heatmap'):
+    '''Generates a heatmap in the plt environment'''
+    pivot_df = perf_df.pivot('Idle-Governor', 'C-State', COMP_METRIC)
+
+    plt.figure(figsize=(12, 6))
+    sns.heatmap(pivot_df, annot=True, cmap='coolwarm', cbar=True, vmin=0, vmax=1)
+    plt.xlabel('C-State')
+    plt.ylabel('Approach')
+    plt.title('Heatmap of Performance Scores')
 
 
 def main():
@@ -69,6 +108,9 @@ def main():
     density_plot(perf_df, 'density')
     line_plot(perf_df, 'line')
     scatter_plot(perf_df, 'scatter')
+    bar_plot(perf_df, 'bar')
+    line_plot_2(perf_df, 'line_plot_2')
+    heatmap(perf_df, 'heatmap')
 
 
 if __name__ == '__main__':
