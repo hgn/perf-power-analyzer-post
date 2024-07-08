@@ -24,6 +24,10 @@ def unique_res(residencies, target_cpu=0):
 # target_cpu is used for retrieving the residency times
 def graph_scatter_sleeptime_by_sequence(df, graph_cstate, residencies, unique_res, target_cpu=0):
     df = df[df['C-State'] == cstate].reset_index(drop=True)
+    # only takes 
+    if len(df) > 3000:
+        print('Found ' + len(df) + ' entries. Only taking first 3000.')
+        df = df.head(3000)
     if len(df) == 0:
         return
 
