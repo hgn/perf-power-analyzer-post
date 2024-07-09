@@ -14,6 +14,7 @@ GOVS = ['ladder', 'menu', 'teo', 'eagle']
 EVENT_FILE = 'idle-governor-events.txt'
 RES_FILE = 'c-state-idle-residency.json'
 PERFORMANCE_FILE = 'idle-governor-performance.json'
+BASE_FOLDER = 'examples/'
 ABOVE_PEN_WEIGHT = 0.2
 BELOW_PEN_WEIGHT = 0.95
 
@@ -85,8 +86,6 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
     if len(gov_data) == 0:
         return None
     perf = 0.0
-    #TODO: DELEEEEEEEEEEEEEEEEEEEEEEEEETE
-    printy = True
     for _, row in gov_data.iterrows():
         if row['Miss'] == 1:
             prev_res = utils.find_res(res, cstate, False)
@@ -96,17 +95,9 @@ def extended_perf(gov_data : pd.DataFrame, res : dict, cstate : str):
             max_res = (max(utils.unique_res(res)) * 1000)
             if row['Below'] == '0':
                 pen = utils.normalize_above(row['Sleep[ns]'], target_res, weight)
-                perf += pen
-                if printy:
-                    print('this is above: ' + str(pen))
-                    printy = False
             else:
                 pen = utils.normalize_below(row['Sleep[ns]'], max_res, next_res, weight)
-                perf += pen
-                if not printy:
-                    print('this is below:' + str(pen))
-                    printy = True
-            #perf += (1 - pen)
+            perf += pen
         else:
             perf += 1.0
     perf = perf / len(gov_data)
@@ -117,8 +108,8 @@ def main():
     """Compare all Governors in the GOVS variable."""
     perf = []
     for gov in GOVS:
-        gov_data = utils.read_gov(f'examples/{gov}/{EVENT_FILE}')
-        res = utils.read_json(f'examples/{gov}/{RES_FILE}')
+        gov_data = utils.read_gov(f'{BASE_FOLDER}{gov}/{EVENT_FILE}')
+        res = utils.read_json(f'{BASE_FOLDER}{gov}/{RES_FILE}')
         cstates = gov_data['C-State'].unique()
         for cstate in cstates:
             perf_simple = simple_perf(gov_data, cstate)
@@ -141,7 +132,7 @@ def main():
                      'Perf-Extended' : perf_extended_total,
                      'Perf-V2' : perf_v2_total,
                      'Occurences' : occ_total})
-    utils.save_json(perf, f'examples/{PERFORMANCE_FILE}')
+    utils.save_json(perf, f'{BASE_FOLDER}{PERFORMANCE_FILE}')
 
 
 if __name__ == '__main__':
