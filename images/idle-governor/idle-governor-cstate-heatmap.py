@@ -21,23 +21,32 @@ def cstate_key(cstate):
 df = pd.read_csv(FILE_DATA, delim_whitespace=True, usecols=['C-State', 'Sleep[ns]', 'CPU', 'Miss'])
 residencies = pd.read_json(FILE_JSON)
 
+df['Optimal-State'] = df['C-State']
 
-# Calculates the optimal matching C-State
-for i in range(len(df)):
-    sleep = df.loc[i]['Sleep[ns]']
-    state = df.loc[i]['C-State']
-    # The smallest residency is always 0
+miss_indices = df.index[df['Miss'] == 1]
+cpu_series = df.loc[miss_indices, 'CPU']
+residency_lookup = {
+    cpu: list(residencies['cpu' + str(cpu)].items())
+    for cpu in df['CPU'].unique()
+}
+
+# Process each row where Miss == 1
+for idx in miss_indices:
+    sleep = df.loc[idx, 'Sleep[ns]']
     opt_res_time = -1
     opt_res_name = None
-    if df.loc[i]['Miss'] == 1:
-        for res in residencies['cpu' + str(df.loc[i]['CPU'])].items():
-            if int(res[1]['residency'])*1000 <= sleep and int(res[1]['residency']) >= opt_res_time:
-                opt_res_time = int(res[1]['residency'])
+    cpu_value = cpu_series.loc[idx]
+
+    if cpu_value in residency_lookup:
+        for res in residency_lookup[cpu_value]:
+            res_time = int(res[1]['residency'])
+            res_time_ns = res_time * 1000
+            if res_time_ns <= sleep and res_time >= opt_res_time:
+                opt_res_time = res_time
                 opt_res_name = res[1]['name']
-    if opt_res_name is None:
-        df.loc[i, 'Optimal-State'] = df.loc[i, 'C-State']
-    else:
-        df.loc[i, 'Optimal-State'] = opt_res_name
+
+    if opt_res_name is not None:
+        df.loc[idx, 'Optimal-State'] = opt_res_name
 
 i_col = sorted(set(df['C-State'].unique()).union(df['Optimal-State'].unique()), key = cstate_key)
 
